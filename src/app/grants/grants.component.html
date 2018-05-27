@@ -8,6 +8,7 @@
             <tr>
               <th>Solicitud</th>
               <th>Alumno</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
@@ -16,6 +17,7 @@
                 <div class="ui ribbon label">{{grant.name}}</div>
               </td>
               <td>{{grant.alumno}}</td>
+              <td [class.warning]="grant.warning"></td>
             </tr>
           </tbody>
         </table>

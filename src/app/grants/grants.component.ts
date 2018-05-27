@@ -14,7 +14,8 @@ export class GrantsComponent implements OnInit {
     setTimeout(() =>
       this.grant = {
         name: 'Solicitud 1',
-        alumno: 'Javier Gamarra'
+        alumno: 'Javier Gamarra',
+        warning: true
       }
     , 2000);
   }
