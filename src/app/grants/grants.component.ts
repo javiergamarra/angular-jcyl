@@ -6,12 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grants.component.css']
 })
 export class GrantsComponent implements OnInit {
-  grant = {
-    name: 'Solicitud 1',
-    alumno: 'Javier Gamarra'
-  };
+  grant = {};
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() =>
+      this.grant = {
+        name: 'Solicitud 1',
+        alumno: 'Javier Gamarra'
+      }
+    , 2000);
+  }
 }
