@@ -19,4 +19,8 @@ export class GrantsComponent implements OnInit {
       }
     , 2000);
   }
+
+  edit() {
+    console.log(this.grant);
+  }
 }

@@ -17,7 +17,9 @@
                 <div class="ui ribbon label">{{grant.name}}</div>
               </td>
               <td>{{grant.alumno}}</td>
-              <td [class.warning]="grant.warning"></td>
+              <td [class.warning]="grant.warning">
+               <span (click)=edit()> Edit </span>
+              </td>
             </tr>
           </tbody>
         </table>
