@@ -1,8 +1,24 @@
-<div>
-  <p>
-    {{grant.name}}
-  </p>
-  <p>
-    {{grant.alumno}}
-  </p>
+<div class="ui grid">
+  <div class="three wide column"></div>
+  <div class="ten wide column">
+    <img src="/assets/img/cabecera.jpg">
+
+      <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Solicitud</th>
+              <th>Alumno</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="ui ribbon label">{{grant.name}}</div>
+              </td>
+              <td>{{grant.alumno}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="three wide column"></div>
 </div>
