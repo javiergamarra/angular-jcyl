@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { GrantsService } from '../grants.service';
 
 @Component({
   selector: 'app-grant',
@@ -25,13 +26,17 @@ export class GrantComponent implements OnInit {
   @Input() grant;
   @Output() grantDeleted = new EventEmitter();
 
-  constructor() {}
+  constructor(private grantsService: GrantsService) {}
 
   ngOnInit() {}
 
-  update(alumn, name) {
-    this.grant.alumn = alumn.value;
-    this.grant.name = name.value;
+  update(alumn, name, id) {
+    if (id) {
+      this.grant.alumn = alumn.value;
+      this.grant.name = name.value;
+    } else {
+      this.grantsService.create(alumn.value, name.value);
+    }
     return false;
   }
 
