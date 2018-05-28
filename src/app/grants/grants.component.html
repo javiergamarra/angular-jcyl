@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let grant of grants">
+        <tr *ngFor="let grant of grants;let i = index;let odd = odd; let first = first">
           <td>
             <div class="ui ribbon label">{{grant.name}}</div>
           </td>
