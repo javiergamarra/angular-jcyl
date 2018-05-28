@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-grant',
@@ -16,12 +16,14 @@ import { Component, OnInit, Input } from '@angular/core';
     </div>
 
     <button (click)="update(alumn, name)">Actualizar</button>
+    <button (click)="delete()">Eliminar</button>
   </form>
   `,
   styleUrls: ['./grant.component.css']
 })
 export class GrantComponent implements OnInit {
   @Input() grant;
+  @Output() grantDeleted = new EventEmitter();
 
   constructor() {}
 
@@ -30,6 +32,11 @@ export class GrantComponent implements OnInit {
   update(alumn, name) {
     this.grant.alumn = alumn.value;
     this.grant.name = name.value;
+    return false;
+  }
+
+  delete() {
+    this.grantDeleted.emit(this.grant);
     return false;
   }
 }

@@ -38,4 +38,9 @@ export class GrantsComponent implements OnInit {
     this.grant = grant;
   }
 
+  delete(grant) {
+    this.grants = this.values.filter(x =>
+      !x.alumn.toLowerCase().includes(grant.alumn.toLowerCase())
+    );
+  }
 }
