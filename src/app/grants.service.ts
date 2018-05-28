@@ -4,6 +4,25 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GrantsService {
+  values = [
+    {
+      name: 'Solicitud 1',
+      alumn: 'Javier',
+      created: new Date(),
+      warning: true
+    },
+    {
+      name: 'Solicitud 2',
+      alumn: 'Jorge',
+      warning: true,
+      created: new Date(),
+      admin: true
+    }
+  ];
 
-  constructor() { }
+  constructor() {}
+
+  getGrants() {
+    return this.values;
+  }
 }

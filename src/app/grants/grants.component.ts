@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GrantsService } from '../grants.service';
 
 @Component({
   selector: 'app-grants',
@@ -6,33 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grants.component.css']
 })
 export class GrantsComponent implements OnInit {
-  values = [
-    {
-      name: 'Solicitud 1',
-      alumn: 'Javier',
-      created: new Date(),
-      warning: true
-    },
-    {
-      name: 'Solicitud 2',
-      alumn: 'Jorge',
-      warning: true,
-      created: new Date(),
-      admin: true
-    }
-  ];
-
-  grants = this.values;
+  grants = this.grantsService.getGrants();
   grant: any;
 
-  constructor() {}
+  constructor(private grantsService: GrantsService) {}
 
   ngOnInit() {}
 
   search(alumnFilter) {
-    this.grants = this.values.filter(x =>
-      x.alumn.toLowerCase().includes(alumnFilter.value.toLowerCase())
-    );
+    this.grants = this.grantsService
+      .getGrants()
+      .filter(x =>
+        x.alumn.toLowerCase().includes(alumnFilter.value.toLowerCase())
+      );
     return false;
   }
 
@@ -41,8 +28,8 @@ export class GrantsComponent implements OnInit {
   }
 
   delete(grant) {
-    this.grants = this.values.filter(x =>
-      !x.alumn.toLowerCase().includes(grant.alumn.toLowerCase())
-    );
+    this.grants = this.grantsService
+      .getGrants()
+      .filter(x => !x.alumn.toLowerCase().includes(grant.alumn.toLowerCase()));
   }
 }
