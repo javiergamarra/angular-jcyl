@@ -38,9 +38,4 @@ export class GrantsComponent implements OnInit {
     this.grant = grant;
   }
 
-  update(alumn, name) {
-    this.grant.alumn = alumn.value;
-    this.grant.name = name.value;
-    return false;
-  }
 }
