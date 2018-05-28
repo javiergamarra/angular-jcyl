@@ -29,7 +29,7 @@
           </td>
           <td>{{grant.alumn}}</td>
           <td [class.warning]="grant.warning">
-            <span (click)=edit(grant)> Edit </span>
+            <span (click)=edit(grant) *ngIf="!grant.admin"> Edit </span>
           </td>
         </tr>
       </tbody>

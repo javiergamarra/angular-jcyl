@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grants.component.css']
 })
 export class GrantsComponent implements OnInit {
-
   values = [
     {
       name: 'Solicitud 1',
@@ -16,7 +15,8 @@ export class GrantsComponent implements OnInit {
     {
       name: 'Solicitud 2',
       alumn: 'Jorge',
-      warning: true
+      warning: true,
+      admin: true
     }
   ];
 
