@@ -7,16 +7,21 @@ import { GrantsService } from '../grants.service';
   styleUrls: ['./grants.component.css']
 })
 export class GrantsComponent implements OnInit {
-  grants = this.grantsService.getGrants();
+  grants;
   grant: any;
 
   constructor(private grantsService: GrantsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+      this.searchGrants();
+  }
+
+  private searchGrants() {
+    this.grantsService.getGrants().then(x => this.grants = x);
+  }
 
   search(alumnFilter) {
-    this.grants = this.grantsService
-      .getGrants()
+    this.grants = this.grants
       .filter(x =>
         x.alumn.toLowerCase().includes(alumnFilter.value.toLowerCase())
       );
@@ -28,8 +33,7 @@ export class GrantsComponent implements OnInit {
   }
 
   delete(grant) {
-    this.grants = this.grantsService
-      .getGrants()
+    this.grants = this.grants
       .filter(x => !x.alumn.toLowerCase().includes(grant.alumn.toLowerCase()));
   }
 }

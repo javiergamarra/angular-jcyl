@@ -1,28 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GrantsService {
-  values = [
-    {
-      name: 'Solicitud 1',
-      alumn: 'Javier',
-      created: new Date(),
-      warning: true
-    },
-    {
-      name: 'Solicitud 2',
-      alumn: 'Jorge',
-      warning: true,
-      created: new Date(),
-      admin: true
-    }
-  ];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getGrants() {
-    return this.values;
+    return this.http.get('https://data-grants.wedeploy.io/grants')
+      .toPromise();
+  }
+
+  delete(id): any {
   }
 }
