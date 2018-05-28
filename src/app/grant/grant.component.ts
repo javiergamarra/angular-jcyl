@@ -4,7 +4,7 @@ import { GrantsService } from '../grants.service';
 @Component({
   selector: 'app-grant',
   template: `
-  <h1>Nueva Solicitud</h1>
+  <h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
 
   <form class="ui form">
     <div class="field">
@@ -16,7 +16,7 @@ import { GrantsService } from '../grants.service';
       <input type="text" id="GrantName" value="{{grant?.name}}" #name>
     </div>
 
-    <button (click)="update(alumn, name)">Actualizar</button>
+    <button (click)="save(alumn, name)">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
     <button (click)="delete()">Eliminar</button>
   </form>
   `,
@@ -28,15 +28,14 @@ export class GrantComponent implements OnInit {
 
   constructor(private grantsService: GrantsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  update(alumn, name, id) {
-    if (id) {
-      this.grant.alumn = alumn.value;
-      this.grant.name = name.value;
-    } else {
-      this.grantsService.create(alumn.value, name.value);
-    }
+  save(alumn, name) {
+    this.grant = this.grant || {};
+    this.grant.alumn = alumn.value;
+    this.grant.name = name.value;
+    this.grantsService.create(this.grant);
     return false;
   }
 

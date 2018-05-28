@@ -7,17 +7,29 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class GrantsService {
   constructor(private http: HttpClient) {}
 
-  create(alumn: any, name: any): any {
-    return this.http
-      .post(
-        'https://data-grants.wedeploy.io/grants',
-        JSON.stringify({ name, alumn }),
-        {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        }
-      )
-      .toPromise()
-      .then(x => console.log(x));
+  create(grant: any = {}): any {
+    const headers = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    if (grant.id) {
+      return this.http
+        .put(
+          `https://data-grants.wedeploy.io/grants/${grant.id}`,
+          JSON.stringify(grant),
+          headers
+        )
+        .toPromise()
+        .then(x => console.log(x));
+    } else {
+      return this.http
+        .post(
+          'https://data-grants.wedeploy.io/grants',
+          JSON.stringify(grant),
+          headers
+        )
+        .toPromise()
+        .then(x => console.log(x));
+    }
   }
 
   getGrants() {
