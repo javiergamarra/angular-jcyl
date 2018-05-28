@@ -33,7 +33,6 @@ export class GrantsComponent implements OnInit {
   }
 
   delete(grant) {
-    this.grants = this.grants
-      .filter(x => !x.alumn.toLowerCase().includes(grant.alumn.toLowerCase()));
+    this.grantsService.delete(grant.id);
   }
 }
