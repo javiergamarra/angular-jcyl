@@ -3,26 +3,40 @@
   <div class="ten wide column">
     <img src="/assets/img/cabecera.jpg">
 
-      <table class="ui celled table">
-          <thead>
-            <tr>
-              <th>Solicitud</th>
-              <th>Alumno</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="ui ribbon label">{{grant.name}}</div>
-              </td>
-              <td>{{grant.alumno}}</td>
-              <td [class.warning]="grant.warning">
-               <span (click)=edit()> Edit </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Solicitud</th>
+          <th>Alumno</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="ui ribbon label">{{grant.name}}</div>
+          </td>
+          <td>{{grant.alumn}}</td>
+          <td [class.warning]="grant.warning">
+            <span (click)=edit(grant)> Edit </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <form class="ui form">
+      <div class="field">
+        <label for="AlumnName">Nombre del Alumno</label>
+        <input type="text" id="AlumnName" value="{{grant.alumn}}" #alumn>
+      </div>
+      <div class="field">
+        <label for="GrantName">Solicitud</label>
+        <input type="text" id="GrantName" value="{{grant.name}}" #name>
+      </div>
+
+      <button (click)="update(alumn, name)">Actualizar</button>
+    </form>
   </div>
   <div class="three wide column"></div>
 </div>
