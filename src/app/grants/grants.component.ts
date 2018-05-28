@@ -10,12 +10,14 @@ export class GrantsComponent implements OnInit {
     {
       name: 'Solicitud 1',
       alumn: 'Javier',
+      created: new Date(),
       warning: true
     },
     {
       name: 'Solicitud 2',
       alumn: 'Jorge',
       warning: true,
+      created: new Date(),
       admin: true
     }
   ];

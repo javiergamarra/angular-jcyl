@@ -19,6 +19,7 @@
         <tr>
           <th>Solicitud</th>
           <th>Alumno</th>
+          <th>Fecha</th>
           <th>Estado</th>
         </tr>
       </thead>
@@ -28,6 +29,7 @@
             <div class="ui ribbon label">{{grant.name}}</div>
           </td>
           <td>{{grant.alumn}}</td>
+          <td>{{grant.created | date: 'dd/MM'}}</td>
           <td [class.warning]="grant.warning">
             <span (click)=edit(grant) *ngIf="!grant.admin"> Edit </span>
           </td>
