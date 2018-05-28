@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { GrantsComponent } from './grants/grants.component';
+import { GrantComponent } from './grant/grant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GrantsComponent
+    GrantsComponent,
+    GrantComponent
   ],
   imports: [
     BrowserModule
