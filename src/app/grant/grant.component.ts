@@ -16,6 +16,18 @@ import { GrantsService } from '../grants.service';
       <input type="text" id="GrantName" value="{{grant?.name}}" #name>
     </div>
 
+    <div class="field">
+      <label for="School">Centro</label>
+      <input type="text" id="School" (keyup)="searchSchools(school.value)" [value]="schoolSelected" #school>
+    </div>
+    <div *ngIf="listSchools.length">
+      <ul>
+        <li *ngFor="let school of listSchools" (click)="selectSchool(school)">
+          {{school}}
+        </li>
+      </ul>
+    </div>
+
     <button (click)="save(alumn, name)">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
     <button (click)="delete()">Eliminar</button>
   </form>
@@ -23,13 +35,16 @@ import { GrantsService } from '../grants.service';
   styleUrls: ['./grant.component.css']
 })
 export class GrantComponent implements OnInit {
+  schools = ['Fernando de Rojas', 'Nuestra Señora de la Consolación'];
+  listSchools = [];
+  schoolSelected = '';
+
   @Input() grant;
   @Output() grantDeleted = new EventEmitter();
 
   constructor(private grantsService: GrantsService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   save(alumn, name) {
     this.grant = this.grant || {};
@@ -42,5 +57,14 @@ export class GrantComponent implements OnInit {
   delete() {
     this.grantDeleted.emit(this.grant);
     return false;
+  }
+
+  searchSchools(school) {
+    console.log(school);
+    this.listSchools = this.schools.filter(x => x.includes(school));
+  }
+
+  selectSchool(school) {
+    this.schoolSelected = school;
   }
 }
