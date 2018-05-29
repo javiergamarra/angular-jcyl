@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,17 @@ export class GrantsService {
         .toPromise()
         .then(x => console.log(x));
     }
+  }
+
+  getQueryGrants(query: string): any {
+    let params = new HttpParams().set('type', 'search');
+    params = params.append(
+      'filter',
+      `[{"name": {"value": {"query": "${query}"}, "operator": "similar"}}]`
+    );
+
+    return this.http
+      .get('https://data-grants.wedeploy.io/grants', {params});
   }
 
   getGrants() {

@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GrantsService } from '../grants.service';
-import {of } from 'rxjs';
+import { of, fromEvent } from 'rxjs';
+import {
+  map,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-grants',
@@ -11,12 +18,22 @@ export class GrantsComponent implements OnInit {
   grants;
   grant: any;
 
+  @ViewChild('alumnFilter') alumnFilter: ElementRef;
+
   constructor(private grantsService: GrantsService) {}
 
   ngOnInit() {
     this.searchGrants();
 
-    of(2).subscribe(x => console.log(x));
+    fromEvent(this.alumnFilter.nativeElement, 'keyup')
+      .pipe(
+        map((e: any) => e.target.value),
+        filter((text: string) => text.length > 2),
+        debounceTime(700),
+        distinctUntilChanged(),
+        switchMap(x => this.grantsService.getQueryGrants(x))
+      )
+      .subscribe(x => console.log(x));
   }
 
   private searchGrants() {
