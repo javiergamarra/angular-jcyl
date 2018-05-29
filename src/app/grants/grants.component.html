@@ -1,41 +1,35 @@
-<div class="ui grid">
-  <div class="three wide column"></div>
-  <div class="ten wide column">
-    <img src="/assets/img/cabecera.jpg">
+<h1>
 
-    <h1>Filtro</h1>
+  Filtro</h1>
 
-    <form class="ui form">
-      <div class="field four wide">
-        <label for="AlumnFilter">Nombre del Alumno</label>
-        <input type="text" id="AlumnFilter" #alumnFilter>
-      </div>
-    </form>
-
-    <table class="ui celled table">
-      <thead>
-        <tr>
-          <th>Solicitud</th>
-          <th>Alumno</th>
-          <th>Fecha</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let grant of grants$ | async;let i = index;let odd = odd; let first = first">
-          <td>
-            <div class="ui ribbon label">{{grant.name}}</div>
-          </td>
-          <td>{{grant.alumn}}</td>
-          <td>{{grant.created | date: 'dd/MM'}}</td>
-          <td [class.warning]="grant.warning">
-            <span (click)=edit(grant) *ngIf="!grant.admin"> Edit </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- <app-grant [grant]=grant (grantDeleted)=delete($event)></app-grant> -->
+<form class="ui form">
+  <div class="field four wide">
+    <label for="AlumnFilter">Nombre del Alumno</label>
+    <input type="text" id="AlumnFilter" #alumnFilter>
   </div>
-  <div class="three wide column"></div>
-</div>
+</form>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Solicitud</th>
+      <th>Alumno</th>
+      <th>Fecha</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let grant of grants$ | async;let i = index;let odd = odd; let first = first">
+      <td>
+        <div class="ui ribbon label">{{grant.name}}</div>
+      </td>
+      <td>{{grant.alumn}}</td>
+      <td>{{grant.created | date: 'dd/MM'}}</td>
+      <td [class.warning]="grant.warning">
+        <a [routerLink]="['/grant/', grant.id]">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <app-grant [grant]=grant (grantDeleted)=delete($event)></app-grant> -->

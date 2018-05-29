@@ -8,11 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewGrantModule } from './new-grant/new-grant.module';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
-  { path: '', component: GrantsComponent },
-  { path: 'new-grant', component: GrantComponent }
-];
+import { routing } from './routes';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +18,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NewGrantModule,
-    RouterModule.forRoot(routes)
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]

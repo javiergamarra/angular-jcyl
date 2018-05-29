@@ -1,7 +1,17 @@
-<p>
-  <a routerLink="">Grants</a>
-</p>
-<p>
-  <a routerLink="new-grant">New Grant</a>
-</p>
-<router-outlet></router-outlet>
+<div class="ui grid">
+  <div class="three wide column"></div>
+  <div class="ten wide column">
+    <img src="/assets/img/cabecera.jpg">
+    <div>
+      <span>
+        <a routerLink="">Grants</a>
+      </span>
+      <span>
+        <a routerLink="new-grant">New Grant</a>
+      </span>
+    </div>
+    <router-outlet></router-outlet>
+
+  </div>
+  <div class="three wide column"></div>
+</div>

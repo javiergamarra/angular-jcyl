@@ -39,10 +39,6 @@ export class GrantsComponent implements OnInit {
     this.grants$ = this.grantsService.getGrants();
   }
 
-  edit(grant) {
-    this.grant = grant;
-  }
-
   delete(grant) {
     this.grantsService.delete(grant.id);
   }

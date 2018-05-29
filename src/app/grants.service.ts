@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
+const url = `https://data-grants.wedeploy.io/grants/`;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,20 +15,12 @@ export class GrantsService {
     };
     if (grant.id) {
       return this.http
-        .put(
-          `https://data-grants.wedeploy.io/grants/${grant.id}`,
-          JSON.stringify(grant),
-          headers
-        )
+        .put(url + grant.id, JSON.stringify(grant), headers)
         .toPromise()
         .then(x => console.log(x));
     } else {
       return this.http
-        .post(
-          'https://data-grants.wedeploy.io/grants',
-          JSON.stringify(grant),
-          headers
-        )
+        .post(url, JSON.stringify(grant), headers)
         .toPromise()
         .then(x => console.log(x));
     }
@@ -39,17 +33,20 @@ export class GrantsService {
       `[{"name": {"value": {"query": "${query}"}, "operator": "similar"}}]`
     );
 
-    return this.http
-      .get('https://data-grants.wedeploy.io/grants', {params});
+    return this.http.get(url, { params });
   }
 
   getGrants() {
-    return this.http.get('https://data-grants.wedeploy.io/grants');
+    return this.http.get(url);
+  }
+
+  getGrant(id): any {
+    return this.http.get(url + id);
   }
 
   delete(id): any {
     this.http
-      .delete(`https://data-grants.wedeploy.io/grants/${id}`)
+      .delete(url + id)
       .toPromise()
       .then(x => console.log(x));
   }
