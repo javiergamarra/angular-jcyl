@@ -15,7 +15,7 @@ import {
   styleUrls: ['./grants.component.css']
 })
 export class GrantsComponent implements OnInit {
-  grants;
+  grants$;
   grant: any;
 
   @ViewChild('alumnFilter') alumnFilter: ElementRef;
@@ -25,26 +25,18 @@ export class GrantsComponent implements OnInit {
   ngOnInit() {
     this.searchGrants();
 
-    fromEvent(this.alumnFilter.nativeElement, 'keyup')
-      .pipe(
-        map((e: any) => e.target.value),
-        filter((text: string) => text.length > 2),
-        debounceTime(700),
-        distinctUntilChanged(),
-        switchMap(x => this.grantsService.getQueryGrants(x))
-      )
-      .subscribe(x => console.log(x));
+    // this.grants$ = fromEvent(this.alumnFilter.nativeElement, 'keyup')
+    //   .pipe(
+    //     map((e: any) => e.target.value),
+    //     filter((text: string) => text.length > 2),
+    //     debounceTime(700),
+    //     distinctUntilChanged(),
+    //     switchMap(x => this.grantsService.getQueryGrants(x))
+    //   );
   }
 
   private searchGrants() {
-    this.grantsService.getGrants().then(x => (this.grants = x));
-  }
-
-  search(alumnFilter) {
-    this.grants = this.grants.filter(x =>
-      x.alumn.toLowerCase().includes(alumnFilter.value.toLowerCase())
-    );
-    return false;
+    this.grants$ = this.grantsService.getGrants();
   }
 
   edit(grant) {

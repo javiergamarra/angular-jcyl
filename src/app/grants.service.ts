@@ -44,7 +44,7 @@ export class GrantsService {
   }
 
   getGrants() {
-    return this.http.get('https://data-grants.wedeploy.io/grants').toPromise();
+    return this.http.get('https://data-grants.wedeploy.io/grants');
   }
 
   delete(id): any {

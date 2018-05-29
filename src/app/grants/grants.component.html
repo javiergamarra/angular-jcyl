@@ -10,8 +10,6 @@
         <label for="AlumnFilter">Nombre del Alumno</label>
         <input type="text" id="AlumnFilter" #alumnFilter>
       </div>
-
-      <button (click)="search(alumnFilter)">Buscar</button>
     </form>
 
     <table class="ui celled table">
@@ -24,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let grant of grants;let i = index;let odd = odd; let first = first">
+        <tr *ngFor="let grant of grants$ | async;let i = index;let odd = odd; let first = first">
           <td>
             <div class="ui ribbon label">{{grant.name}}</div>
           </td>
