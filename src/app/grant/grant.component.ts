@@ -1,19 +1,22 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GrantsService } from '../grants.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-grant',
   template: `
   <h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
 
-  <form class="ui form" #f="ngForm" (ngSubmit)="submit(f)">
+  <form class="ui form" [formGroup]="form">
     <div class="field">
       <label for="AlumnName">Nombre del Alumno</label>
-      <input type="text" id="AlumnName" value="{{grant?.alumn}}" #alumn ngModel required name="AlumnName">
+      <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName"
+       [formControl]="form.controls['alumnName']">
     </div>
     <div class="field">
       <label for="GrantName">Solicitud</label>
-      <input type="text" id="GrantName" value="{{grant?.name}}" #name ngModel required name="GrantName">
+      <input type="text" value="{{grant?.name}}" #name required name="GrantName"
+      [formControl]="form.controls['grantName']">
     </div>
 
     <div class="field">
@@ -28,7 +31,7 @@ import { GrantsService } from '../grants.service';
       </ul>
     </div>
 
-    <button [disabled]="!f.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
+    <button (click)="submit()" [disabled]="!form.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
     <button (click)="delete()">Eliminar</button>
   </form>
   `,
@@ -38,19 +41,26 @@ export class GrantComponent implements OnInit {
   schools = ['Fernando de Rojas', 'Nuestra Señora de la Consolación'];
   listSchools = [];
   schoolSelected = '';
+  form;
 
   @Input() grant;
   @Output() grantDeleted = new EventEmitter();
 
-  constructor(private grantsService: GrantsService) {}
+  constructor(private grantsService: GrantsService, private formsBuilder: FormBuilder) {
+    this.form = formsBuilder.group({
+      alumnName: '',
+      grantName: '',
+      date: ''
+     });
+  }
 
   ngOnInit() {}
 
-  submit(f) {
-    console.log(f);
-    this.grant = this.grant || f.value;
-    this.grant.name = f.value.GrantName;
-    this.grant.alumn = f.value.AlumnName;
+  submit() {
+    console.log(this.form);
+    this.grant = this.grant || this.form.value;
+    this.grant.name = this.form.value.grantName;
+    this.grant.alumn = this.form.value.alumnName;
     this.grantsService.create(this.grant);
   }
 
