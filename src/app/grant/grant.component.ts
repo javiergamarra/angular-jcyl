@@ -6,14 +6,14 @@ import { GrantsService } from '../grants.service';
   template: `
   <h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
 
-  <form class="ui form">
+  <form class="ui form" #f="ngForm" (ngSubmit)="submit(f)">
     <div class="field">
       <label for="AlumnName">Nombre del Alumno</label>
-      <input type="text" id="AlumnName" value="{{grant?.alumn}}" #alumn>
+      <input type="text" id="AlumnName" value="{{grant?.alumn}}" #alumn ngModel required name="AlumnName">
     </div>
     <div class="field">
       <label for="GrantName">Solicitud</label>
-      <input type="text" id="GrantName" value="{{grant?.name}}" #name>
+      <input type="text" id="GrantName" value="{{grant?.name}}" #name ngModel required name="GrantName">
     </div>
 
     <div class="field">
@@ -28,7 +28,7 @@ import { GrantsService } from '../grants.service';
       </ul>
     </div>
 
-    <button (click)="save(alumn, name)">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
+    <button>{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
     <button (click)="delete()">Eliminar</button>
   </form>
   `,
@@ -46,12 +46,12 @@ export class GrantComponent implements OnInit {
 
   ngOnInit() {}
 
-  save(alumn, name) {
-    this.grant = this.grant || {};
-    this.grant.alumn = alumn.value;
-    this.grant.name = name.value;
+  submit(f) {
+    console.log(f);
+    this.grant = this.grant || f.value;
+    this.grant.name = f.value.GrantName;
+    this.grant.alumn = f.value.AlumnName;
     this.grantsService.create(this.grant);
-    return false;
   }
 
   delete() {
