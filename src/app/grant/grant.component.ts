@@ -4,12 +4,29 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap, mergeMap, filter } from 'rxjs/operators';
 
+const allTypes = [
+  'Habitual',
+  'Habitual discontinuo',
+  'Esporadico',
+  'Transportado'
+];
+
 @Component({
   selector: 'app-grant',
   template: `
   <h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
 
   <form class="ui form" [formGroup]="form">
+
+  <label for="AlumnoRadio">Alumno</label>
+  <input type="radio" name="kind" value="Alumno" id="AlumnoRadio" (change)="onChange($event.target.value)">
+  <label for="ProfesorRadio">Profesor</label>
+  <input type="radio" name="kind" value="Profesor" id="ProfesorRadio" (change)="onChange($event.target.value)">
+
+    <select name="type" [(ngModel)]="grant.type" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let type of types">{{type}}</option>
+    </select>
+
     <div class="field">
       <label for="AlumnName">Nombre del Alumno</label>
       <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName"
@@ -44,8 +61,9 @@ export class GrantComponent implements OnInit {
   listSchools = [];
   schoolSelected = '';
   form;
+  types = allTypes;
 
-  @Input() grant;
+  @Input() grant = {};
   @Output() grantDeleted = new EventEmitter();
 
   constructor(
@@ -89,5 +107,15 @@ export class GrantComponent implements OnInit {
 
   selectSchool(school) {
     this.schoolSelected = school;
+  }
+
+  onChange(value) {
+    console.log(value);
+    if (value === 'Profesor') {
+      this.types = ['Habitual'];
+      this.grant.type = 'Habitual';
+    } else {
+      this.types = allTypes;
+    }
   }
 }
