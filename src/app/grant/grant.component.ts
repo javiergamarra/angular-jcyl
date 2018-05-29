@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GrantsService } from '../grants.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap, mergeMap, filter } from 'rxjs/operators';
 
@@ -32,6 +32,10 @@ const allTypes = [
       <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName"
        [formControl]="form.controls['alumnName']">
     </div>
+
+    <p *ngIf="form.controls.alumnName.errors && !form.pristine">
+    {{form.controls.alumnName.errors | json}}
+    </p>
     <div class="field">
       <label for="GrantName">Solicitud</label>
       <input type="text" value="{{grant?.name}}" #name required name="GrantName"
@@ -60,7 +64,7 @@ export class GrantComponent implements OnInit {
   schools = ['Fernando de Rojas', 'Nuestra Señora de la Consolación'];
   listSchools = [];
   schoolSelected = '';
-  form;
+  form: NgForm;
   types = allTypes;
 
   @Input() grant = {};
@@ -72,7 +76,10 @@ export class GrantComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.form = formsBuilder.group({
-      alumnName: '',
+      alumnName: [
+        '',
+        [Validators.required, Validators.minLength(3), this.myValidator]
+      ],
       grantName: '',
       date: ''
     });
@@ -101,7 +108,7 @@ export class GrantComponent implements OnInit {
   }
 
   searchSchools(school) {
-    console.log(school);
+    console.log(this.form);
     this.listSchools = this.schools.filter(x => x.includes(school));
   }
 
@@ -117,5 +124,9 @@ export class GrantComponent implements OnInit {
     } else {
       this.types = allTypes;
     }
+  }
+
+  myValidator(formControl: FormControl) {
+    return formControl.value.includes('asdf') ? { InvalidValue: true } : {};
   }
 }
