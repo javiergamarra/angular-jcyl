@@ -28,7 +28,7 @@ import { GrantsService } from '../grants.service';
       </ul>
     </div>
 
-    <button>{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
+    <button [disabled]="!f.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
     <button (click)="delete()">Eliminar</button>
   </form>
   `,
