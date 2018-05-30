@@ -39,7 +39,7 @@ const allTypes = [
        [formControl]="alumnControl">
     </div>
 
-    <p *ngIf="form.controls.alumnControl.errors && !form.pristine">
+    <p *ngIf="alumnControl.errors && !form.pristine">
     {{alumnControl.errors | json}}
     </p>
     <div class="field">
@@ -75,7 +75,7 @@ export class GrantComponent implements OnInit {
 
   alumnControl: FormControl;
 
-  @Input() grant = {};
+  @Input() grant: any = {};
   @Output() grantDeleted = new EventEmitter();
 
   constructor(

@@ -59,7 +59,7 @@ export class GrantsComponent implements OnInit {
         debounceTime(700),
         distinctUntilChanged(),
         switchMap(x => this.grantsService.getQueryGrants(x)),
-        map(x => x.documents)
+        map((x: any) => x.documents)
       ),
       this.grantsService.getGrants()
     );
