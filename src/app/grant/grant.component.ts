@@ -1,6 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GrantsService } from '../grants.service';
-import { FormBuilder, Validators, FormControl, NgForm } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormControl,
+  NgForm,
+  FormGroup
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap, mergeMap, filter } from 'rxjs/operators';
 
@@ -30,11 +36,11 @@ const allTypes = [
     <div class="field">
       <label for="AlumnName">Nombre del Alumno</label>
       <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName"
-       [formControl]="form.controls['alumnName']">
+       [formControl]="alumnControl">
     </div>
 
-    <p *ngIf="form.controls.alumnName.errors && !form.pristine">
-    {{form.controls.alumnName.errors | json}}
+    <p *ngIf="form.controls.alumnControl.errors && !form.pristine">
+    {{alumnControl.errors | json}}
     </p>
     <div class="field">
       <label for="GrantName">Solicitud</label>
@@ -64,8 +70,10 @@ export class GrantComponent implements OnInit {
   schools = ['Fernando de Rojas', 'Nuestra Señora de la Consolación'];
   listSchools = [];
   schoolSelected = '';
-  form: NgForm;
+  form: FormGroup;
   types = allTypes;
+
+  alumnControl: FormControl;
 
   @Input() grant = {};
   @Output() grantDeleted = new EventEmitter();
@@ -75,11 +83,16 @@ export class GrantComponent implements OnInit {
     private formsBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {
+    this.alumnControl = formsBuilder.control('', [
+      Validators.required,
+      Validators.minLength(3),
+      this.myValidator
+    ]);
+
+    this.alumnControl.valueChanges.subscribe(x => console.log(x));
+
     this.form = formsBuilder.group({
-      alumnName: [
-        '',
-        [Validators.required, Validators.minLength(3), this.myValidator]
-      ],
+      alumnControl: this.alumnControl,
       grantName: '',
       date: ''
     });
