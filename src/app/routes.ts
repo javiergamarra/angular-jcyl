@@ -1,12 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
-import { GrantsComponent } from './grants/grants.component';
-import { GrantComponent } from './grant/grant.component';
 import { MyGuardGuard } from './my-guard.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: GrantsComponent },
-  { path: 'grant/:id', component: GrantComponent, canActivate: [MyGuardGuard] },
-  { path: 'new-grant', component: GrantComponent }
+  { path: '', component: HomeComponent },
+  {
+    path: 'grants',
+    loadChildren: '../app/new-grant/new-grant.module#NewGrantModule'
+  }
 ];
 
 export const routing = RouterModule.forRoot(routes);

@@ -26,7 +26,7 @@
       <td>{{grant.alumn}}</td>
       <td>{{grant.created | date: 'dd/MM'}}</td>
       <td [class.warning]="grant.warning">
-        <a [routerLink]="['/grant/', grant.id]">Edit</a>
+        <a [routerLink]="['new', grant.id]">Edit</a>
       </td>
     </tr>
   </tbody>

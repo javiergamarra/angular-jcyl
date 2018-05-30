@@ -4,10 +4,13 @@
     <img src="/assets/img/cabecera.jpg">
     <div>
       <span>
-        <a routerLink="">Grants</a>
+        <a [routerLink]="['']">Home</a>
       </span>
       <span>
-        <a routerLink="new-grant">New Grant</a>
+        <a [routerLink]="['grants']">Grants</a>
+      </span>
+      <span>
+        <a [routerLink]="['grants', 'new']">New Grant</a>
       </span>
     </div>
     <router-outlet></router-outlet>
