@@ -30,7 +30,14 @@ export class GrantsService {
     let params = new HttpParams().set('type', 'search');
     params = params.append(
       'filter',
-      `[{"name": {"value": {"query": "${query}"}, "operator": "similar"}}]`
+      `[
+        {
+          "name": {
+            "value": "${query}",
+            "operator": "match"
+          }
+        }
+      ]`
     );
 
     return this.http.get(url, { params });

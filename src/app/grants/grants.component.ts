@@ -1,13 +1,16 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GrantsService } from '../grants.service';
-import { of, fromEvent } from 'rxjs';
+import { of, fromEvent, merge, Observable, empty } from 'rxjs';
 import {
   map,
   filter,
   debounceTime,
   distinctUntilChanged,
-  switchMap
+  switchMap,
+  tap,
+  mergeMap
 } from 'rxjs/operators';
+import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
 
 @Component({
   selector: 'app-grants',
@@ -23,16 +26,19 @@ export class GrantsComponent implements OnInit {
   constructor(private grantsService: GrantsService) {}
 
   ngOnInit() {
-    this.searchGrants();
+    // this.searchGrants();
 
-    // this.grants$ = fromEvent(this.alumnFilter.nativeElement, 'keyup')
-    //   .pipe(
-    //     map((e: any) => e.target.value),
-    //     filter((text: string) => text.length > 2),
-    //     debounceTime(700),
-    //     distinctUntilChanged(),
-    //     switchMap(x => this.grantsService.getQueryGrants(x))
-    //   );
+    this.grants$ = merge(
+      fromEvent(this.alumnFilter.nativeElement, 'keyup').pipe(
+        map((e: any) => e.target.value),
+        filter((text: string) => text.length > 2),
+        debounceTime(700),
+        distinctUntilChanged(),
+        switchMap(x => this.grantsService.getQueryGrants(x)),
+        map(x => x.documents)
+      ),
+      this.grantsService.getGrants()
+    );
   }
 
   private searchGrants() {
