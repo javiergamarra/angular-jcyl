@@ -11,24 +11,24 @@
 
 <table class="ui celled table">
   <thead>
-    <tr>
-      <th>Solicitud</th>
-      <th>Alumno</th>
-      <th>Fecha</th>
-      <th>Estado</th>
-    </tr>
+  <tr>
+    <th>Solicitud</th>
+    <th>Alumno</th>
+    <th>Fecha</th>
+    <th>Estado</th>
+  </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let grant of grants$ | async;let i = index;let odd = odd; let first = first">
-      <td>
-        <div class="ui ribbon label">{{grant.name}}</div>
-      </td>
-      <td>{{grant.alumn}}</td>
-      <td>{{grant.created | date: 'dd/MM'}}</td>
-      <td [class.warning]="grant.warning">
-        <a [routerLink]="['new', grant.id]">Edit</a>
-      </td>
-    </tr>
+  <tr *ngFor="let grant of grants$ | async;let i = index;let odd = odd; let first = first">
+    <td>
+      <div class="ui ribbon label">{{grant.name}}</div>
+    </td>
+    <td>{{grant.alumn}}</td>
+    <td>{{grant.created | date: 'dd/MM'}}</td>
+    <td [class.warning]="grant.warning">
+      <a [routerLink]="['new', grant.id]">Edit</a>
+    </td>
+  </tr>
   </tbody>
 </table>
 

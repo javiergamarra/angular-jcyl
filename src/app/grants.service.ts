@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 const url = `https://data-grants.wedeploy.io/grants/`;
 
@@ -7,7 +7,8 @@ const url = `https://data-grants.wedeploy.io/grants/`;
   providedIn: 'root'
 })
 export class GrantsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   create(grant: any = {}): any {
     const headers = {

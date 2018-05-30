@@ -1,28 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { GrantsService } from '../grants.service';
-import {
-  of,
-  fromEvent,
-  merge,
-  Observable,
-  empty,
-  interval,
-  combineLatest,
-  concat,
-  race,
-  zip
-} from 'rxjs';
-import {
-  map,
-  filter,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-  mergeMap,
-  startWith
-} from 'rxjs/operators';
-import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {GrantsService} from '../grants.service';
+import {fromEvent, interval, merge, zip} from 'rxjs';
+import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-grants',

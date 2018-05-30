@@ -1,6 +1,5 @@
-import { Routes, RouterModule } from '@angular/router';
-import { MyGuardGuard } from './my-guard.guard';
-import { HomeComponent } from './home/home.component';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

@@ -1,14 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { GrantsService } from '../grants.service';
-import {
-  FormBuilder,
-  Validators,
-  FormControl,
-  NgForm,
-  FormGroup
-} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { map, tap, mergeMap, filter } from 'rxjs/operators';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {GrantsService} from '../grants.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {filter, mergeMap, tap} from 'rxjs/operators';
 
 const allTypes = [
   'Habitual',
@@ -20,49 +14,56 @@ const allTypes = [
 @Component({
   selector: 'app-grant',
   template: `
-  <h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
+    <h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
 
-  <form class="ui form" [formGroup]="form">
+    <form class="ui form" [formGroup]="form">
 
-  <label for="AlumnoRadio">Alumno</label>
-  <input type="radio" name="kind" value="Alumno" id="AlumnoRadio" (change)="onChange($event.target.value)">
-  <label for="ProfesorRadio">Profesor</label>
-  <input type="radio" name="kind" value="Profesor" id="ProfesorRadio" (change)="onChange($event.target.value)">
+      <label for="AlumnoRadio">Alumno</label>
+      <input type="radio" name="kind" value="Alumno" id="AlumnoRadio" (change)="onChange($event.target.value)">
+      <label for="ProfesorRadio">Profesor</label>
+      <input type="radio" name="kind" value="Profesor" id="ProfesorRadio" (change)="onChange($event.target.value)">
 
-    <select name="type" [(ngModel)]="grant.type" [ngModelOptions]="{standalone: true}">
-    <option *ngFor="let type of types">{{type}}</option>
-    </select>
+      <select name="type" [(ngModel)]="grant.type" [ngModelOptions]="{standalone: true}">
+        <option *ngFor="let type of types">{{type}}</option>
+      </select>
 
-    <div class="field">
-      <label for="AlumnName">Nombre del Alumno</label>
-      <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName"
-       [formControl]="alumnControl">
-    </div>
+      <div class="field">
+        <label for="AlumnName">Nombre del Alumno</label>
+        <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName"
+               [formControl]="alumnControl">
+      </div>
 
-    <p *ngIf="alumnControl.errors && !form.pristine">
-    {{alumnControl.errors | json}}
-    </p>
-    <div class="field">
-      <label for="GrantName">Solicitud</label>
-      <input type="text" value="{{grant?.name}}" #name required name="GrantName"
-      [formControl]="form.controls['grantName']">
-    </div>
+      <p *ngIf="alumnControl.errors && !form.pristine">
+        {{alumnControl.errors | json}}
+      </p>
+      <div class="field">
+        <label for="GrantName">Solicitud</label>
+        <input type="text" value="{{grant?.name}}" #name required name="GrantName"
+               [formControl]="form.controls['grantName']">
+      </div>
 
-    <div class="field">
-      <label for="School">Centro</label>
-      <input type="text" id="School" (keyup)="searchSchools(school.value)" [value]="schoolSelected" #school>
-    </div>
-    <div *ngIf="listSchools.length">
-      <ul>
-        <li *ngFor="let school of listSchools" (click)="selectSchool(school)">
-          {{school}}
-        </li>
-      </ul>
-    </div>
 
-    <button (click)="submit()" [disabled]="!form.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
-    <button (click)="delete()">Eliminar</button>
-  </form>
+      <div class="field">
+        <label for="School">Centro</label>
+        <input type="text" id="School" (keyup)="searchSchools(school.value)" [value]="schoolSelected" #school>
+      </div>
+      <div *ngIf="listSchools.length">
+        <ul>
+          <li *ngFor="let school of listSchools" (click)="selectSchool(school)">
+            {{school}}
+          </li>
+        </ul>
+      </div>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="log($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button (click)="submit()" [disabled]="!form.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
+      <button (click)="delete()">Eliminar</button>
+    </form>
   `,
   styleUrls: ['./grant.component.css']
 })
@@ -105,7 +106,12 @@ export class GrantComponent implements OnInit {
       .subscribe(y => (this.grant = y));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  log(event) {
+    console.log(event);
+  }
 
   submit() {
     console.log(this.form);

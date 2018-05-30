@@ -1,4 +1,4 @@
-import { NewGrantModule } from './new-grant.module';
+import {NewGrantModule} from './new-grant.module';
 
 describe('NewGrantModule', () => {
   let newGrantModule: NewGrantModule;
