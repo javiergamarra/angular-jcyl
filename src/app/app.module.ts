@@ -9,17 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewGrantModule } from './new-grant/new-grant.module';
 import { RouterModule, Routes } from '@angular/router';
 import { routing } from './routes';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NewGrantModule,
-    routing
-  ],
+  imports: [BrowserModule, SharedModule, NewGrantModule],
   providers: [],
   bootstrap: [AppComponent]
 })
