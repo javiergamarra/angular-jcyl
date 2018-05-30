@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: 'grants',
     loadChildren: '../app/new-grant/new-grant.module#NewGrantModule'
-  }
+  },
+  { path: '*', component: HomeComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes);
