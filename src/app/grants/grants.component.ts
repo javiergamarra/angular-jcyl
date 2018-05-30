@@ -1,6 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GrantsService } from '../grants.service';
-import { of, fromEvent, merge, Observable, empty } from 'rxjs';
+import {
+  of,
+  fromEvent,
+  merge,
+  Observable,
+  empty,
+  interval,
+  combineLatest,
+  concat,
+  race,
+  zip
+} from 'rxjs';
 import {
   map,
   filter,
@@ -8,7 +19,8 @@ import {
   distinctUntilChanged,
   switchMap,
   tap,
-  mergeMap
+  mergeMap,
+  startWith
 } from 'rxjs/operators';
 import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
 
@@ -23,7 +35,19 @@ export class GrantsComponent implements OnInit {
 
   @ViewChild('alumnFilter') alumnFilter: ElementRef;
 
-  constructor(private grantsService: GrantsService) {}
+  constructor(private grantsService: GrantsService) {
+    zip(
+      interval(1000).pipe(map(x => 'a')),
+      interval(2000).pipe(map(x => 'b'))
+    ).subscribe(x => console.log(x));
+
+    // combineLatest
+    // concat
+    // merge
+    // race
+    // zip
+    // startWith
+  }
 
   ngOnInit() {
     // this.searchGrants();
