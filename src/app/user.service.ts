@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 
-class User {
+export class User {
   constructor(private name) {
   }
 }
