@@ -18,6 +18,7 @@ const routes: Routes = [
   imports: [SharedModule, RouterModule.forChild(routes), MatFormFieldModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule, AccordionModule.forRoot()],
   declarations: [GrantComponent, GrantsComponent, PadreComponent],
+  entryComponents: [PadreComponent],
   exports: [GrantsComponent]
 })
 export class GrantsModule {

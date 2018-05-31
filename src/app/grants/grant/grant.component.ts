@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {filter, mergeMap} from 'rxjs/operators';
 import {GrantsService} from '../grants.service';
+import {PadreComponent} from '../../padre/padre.component';
 
 const allTypes = [
   'Habitual',
@@ -28,10 +29,13 @@ export class GrantComponent implements OnInit {
   @Input() grant: any = {};
   @Output() grantDeleted = new EventEmitter();
 
+  @ViewChild('padres', { read: ViewContainerRef }) inject: ViewContainerRef;
+
   constructor(
     private grantsService: GrantsService,
     private formsBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {
     this.alumnControl = formsBuilder.control('', [
       Validators.required,
@@ -50,9 +54,13 @@ export class GrantComponent implements OnInit {
         mergeMap(x => this.grantsService.getGrant(x.id))
       )
       .subscribe(y => (this.grant = y));
+
   }
 
   ngOnInit() {
+
+    this.inject.createComponent(this.componentFactoryResolver.resolveComponentFactory(
+      PadreComponent));
   }
 
   log(event) {
