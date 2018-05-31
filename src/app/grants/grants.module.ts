@@ -6,6 +6,7 @@ import {AccordionModule} from 'ngx-bootstrap';
 import {AuthenticationGuard} from '../shared/authentication.guard';
 import {GrantsComponent} from './grants/grants.component';
 import {GrantComponent} from './grant/grant.component';
+import {PadreComponent} from '../padre/padre.component';
 
 const routes: Routes = [
   { path: '', component: GrantsComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(routes), MatFormFieldModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule, AccordionModule.forRoot()],
-  declarations: [GrantComponent, GrantsComponent],
+  declarations: [GrantComponent, GrantsComponent, PadreComponent],
   exports: [GrantsComponent]
 })
 export class GrantsModule {
