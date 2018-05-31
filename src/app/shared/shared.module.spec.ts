@@ -7,7 +7,7 @@ describe('SharedModule', () => {
     sharedModule = new SharedModule();
   });
 
-  it('should create an instance', () => {
+  it('should createGrant an instance', () => {
     expect(sharedModule).toBeTruthy();
   });
 });

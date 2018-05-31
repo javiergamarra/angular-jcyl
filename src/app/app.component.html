@@ -3,19 +3,25 @@
   <div class="ten wide column">
     <img src="/assets/img/cabecera.jpg">
 
-    <alert type="success">hello</alert>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span [routerLink]="['']">Home</span>
 
-    <div>
-      <span>
-        <a [routerLink]="['']">Home</a>
-      </span>
-      <span>
-        <a [routerLink]="['grants']">Grants</a>
-      </span>
-      <span>
-        <a [routerLink]="['grants', 'new']">New Grant</a>
-      </span>
-    </div>
+        <span style="padding:10px"></span>
+        <button mat-button [matMenuTriggerFor]="menu" style="width: 100px">Grants</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['grants']">List</button>
+          <button mat-menu-item [routerLink]="['grants', 'new-grant']">New Grant</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="centerMenu" style="width: 100px">Centers</button>
+        <mat-menu #centerMenu="matMenu">
+          <button mat-menu-item>List</button>
+          <button mat-menu-item>New Center</button>
+        </mat-menu>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
 
     <router-outlet></router-outlet>
 

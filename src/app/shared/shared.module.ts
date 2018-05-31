@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
+import {MatMenuModule, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -10,7 +11,7 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule, MatMenuModule, MatToolbarModule
   ],
   declarations: [],
   exports: [
@@ -18,7 +19,7 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule, MatMenuModule, MatToolbarModule
   ]
 })
 export class SharedModule {

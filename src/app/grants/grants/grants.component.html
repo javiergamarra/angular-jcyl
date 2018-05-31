@@ -1,6 +1,4 @@
-<h1>
-
-  Filtro</h1>
+<h1>Filtro</h1>
 
 <form class="ui form">
   <div class="field four wide">
@@ -26,10 +24,8 @@
     <td>{{grant.alumn}}</td>
     <td>{{grant.created | date: 'dd/MM'}}</td>
     <td [class.warning]="grant.warning">
-      <a [routerLink]="['new', grant.id]">Edit</a>
+      <a [routerLink]="[grant.id]">Edit</a>
     </td>
   </tr>
   </tbody>
 </table>
-
-<!-- <app-grant [grant]=grant (grantDeleted)=delete($event)></app-grant> -->
