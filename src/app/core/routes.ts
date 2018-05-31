@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'grants',
-    loadChildren: '../grants/grants.module#GrantsModule'
+    loadChildren: '../app/grants/grants.module#GrantsModule'
   },
   { path: '*', component: HomeComponent }
 ];
