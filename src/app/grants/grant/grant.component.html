@@ -11,7 +11,7 @@
     <option *ngFor="let type of types">{{type}}</option>
   </select>
 
-  <div class="field">
+  <div class="field" class="menu-ancho">
     <label for="AlumnName">Nombre del Alumno</label>
     <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName" id="AlumnName"
            [formControl]="alumnControl">

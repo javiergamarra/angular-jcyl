@@ -8,13 +8,13 @@
         <span [routerLink]="['']">Home</span>
 
         <span style="padding:10px"></span>
-        <button mat-button [matMenuTriggerFor]="menu" style="width: 100px">Grants</button>
+        <button mat-button [matMenuTriggerFor]="menu" class="menu-ancho">Grants</button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item [routerLink]="['grants']">List</button>
           <button mat-menu-item [routerLink]="['grants', 'new-grant']">New Grant</button>
         </mat-menu>
 
-        <button mat-button [matMenuTriggerFor]="centerMenu" style="width: 100px">Centers</button>
+        <button mat-button [matMenuTriggerFor]="centerMenu" class="menu-ancho">Centers</button>
         <mat-menu #centerMenu="matMenu">
           <button mat-menu-item>List</button>
           <button mat-menu-item>New Center</button>
