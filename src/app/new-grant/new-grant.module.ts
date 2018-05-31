@@ -5,6 +5,7 @@ import {SharedModule} from '../shared/shared.module';
 import {RouterModule, Routes} from '@angular/router';
 import {MyGuardGuard} from '../my-guard.guard';
 import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {AccordionModule} from 'ngx-bootstrap';
 
 const routes: Routes = [
   { path: '', component: GrantsComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [SharedModule, RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, AccordionModule.forRoot()],
   declarations: [GrantComponent, GrantsComponent],
   exports: [GrantsComponent]
 })

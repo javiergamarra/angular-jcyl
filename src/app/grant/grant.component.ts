@@ -61,6 +61,21 @@ const allTypes = [
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
+      <accordion>
+        <accordion-group heading="Static Header, initially expanded">
+          This content is straight in the template.
+        </accordion-group>
+        <accordion-group heading="Another group">
+          <p>Some content</p>
+        </accordion-group>
+        <accordion-group heading="Another group">
+          <p>Some content</p>
+        </accordion-group>
+        <accordion-group heading="Another group">
+          <p>Some content</p>
+        </accordion-group>
+      </accordion>
+
       <button (click)="submit()" [disabled]="!form.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
       <button (click)="delete()">Eliminar</button>
     </form>
