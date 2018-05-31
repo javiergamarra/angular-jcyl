@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-padre',
@@ -8,7 +9,8 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class PadreComponent implements OnInit {
 
-  constructor() {
+  constructor(private userService: UserService) {
+    this.userService.currentUser.asObservable().subscribe(x => console.log(x));
   }
 
   ngOnInit() {
