@@ -30,7 +30,7 @@ export class GrantsComponent implements OnInit {
     );
   }
 
-  private searchGrants() {
+  searchGrants() {
     this.grants$ = this.grantsService.getGrants();
   }
 

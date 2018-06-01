@@ -1,4 +1,5 @@
-import {NIFDirective} from './cif.directive';
+class NIFDirective {
+}
 
 describe('NIFDirective', () => {
   it('should create an instance', () => {

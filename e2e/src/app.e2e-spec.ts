@@ -1,4 +1,4 @@
-import { AppPage } from './app.po';
+import {AppPage} from './app.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -9,6 +9,9 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual(`Home
+Grants
+Centers
+home works!`);
   });
 });
