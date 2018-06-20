@@ -58,21 +58,16 @@ export class GrantComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.inject.createComponent(this.componentFactoryResolver.resolveComponentFactory(
-      FatherComponent));
-  }
-
-  log(event) {
-    console.log(event);
+    this.inject.createComponent(this.componentFactoryResolver.resolveComponentFactory(FatherComponent));
   }
 
   submit() {
-    console.log(this.form);
     this.grant = this.grant || this.form.value;
     this.grant.name = this.form.value.grantName;
     this.grant.alumn = this.form.value.alumnName;
-    this.grantsService.createGrant(this.grant);
+    this.grantsService.createGrant(this.grant)
+      .then(x => console.log(x))
+      .catch(err => console.log(err));
   }
 
   delete() {

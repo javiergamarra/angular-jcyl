@@ -16,15 +16,13 @@ export class GrantsService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http.request((grant.id ? 'PUT' : 'POST'), url + grant.id, options)
-      .toPromise()
-      .then(x => console.log(x));
+      .toPromise();
   }
 
   deleteGrant(id): any {
     this.http
       .delete(url + id)
-      .toPromise()
-      .then(x => console.log(x));
+      .toPromise();
   }
 
   getGrants() {

@@ -35,6 +35,8 @@ export class GrantsComponent implements OnInit {
   }
 
   delete(grant) {
-    this.grantsService.deleteGrant(grant.id);
+    this.grantsService.deleteGrant(grant.id)
+      .then(x => console.log(x))
+      .catch(err => console.log(err));
   }
 }
