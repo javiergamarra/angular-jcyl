@@ -9,9 +9,10 @@ import {routing} from './core/routes';
 import {StoreModule} from '@ngrx/store';
 import {userReducer} from './shared/user-store';
 import {BankDataComponent} from './grants/bank-data/bank-data.component';
+import {UserComponent} from './user/user.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, BankDataComponent],
+  declarations: [AppComponent, HomeComponent, BankDataComponent, UserComponent],
   imports: [BrowserModule, SharedModule, routing, BrowserAnimationsModule, StoreModule.forRoot({ user: userReducer })],
   providers: [],
   bootstrap: [AppComponent]
