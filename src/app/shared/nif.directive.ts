@@ -1,7 +1,7 @@
 import {Directive, ElementRef, HostBinding, HostListener} from '@angular/core';
 
 @Directive({
-  selector: '[NIF]'
+  selector: '[appNIF]'
 })
 export class NifDirective {
 
