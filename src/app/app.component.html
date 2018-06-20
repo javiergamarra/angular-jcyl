@@ -16,8 +16,14 @@
 
         <button mat-button [matMenuTriggerFor]="centerMenu" class="menu-ancho">Centers</button>
         <mat-menu #centerMenu="matMenu">
-          <button mat-menu-item>List</button>
-          <button mat-menu-item>New Center</button>
+          <button mat-menu-item [routerLink]="['centers']">List</button>
+          <button mat-menu-item [routerLink]="['centers', 'new']">New Center</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="cateringMenu" class="menu-ancho">Caterings</button>
+        <mat-menu #cateringMenu="matMenu">
+          <button mat-menu-item [routerLink]="['caterings']">List</button>
+          <button mat-menu-item [routerLink]="['caterings', 'new']">New Catering</button>
         </mat-menu>
 
       </mat-toolbar-row>
