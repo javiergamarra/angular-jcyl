@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {UserService} from '../shared/user.service';
 
 @Component({
-  selector: 'app-father',
+  selector: 'comedores-father',
   templateUrl: './father.component.html',
   styleUrls: ['./father.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

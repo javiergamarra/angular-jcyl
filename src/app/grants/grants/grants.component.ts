@@ -4,7 +4,7 @@ import {fromEvent, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-grants',
+  selector: 'comedores-grants',
   templateUrl: './grants.component.html',
   styleUrls: ['./grants.component.css']
 })

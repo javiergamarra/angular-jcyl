@@ -13,7 +13,7 @@ const allTypes = [
 ];
 
 @Component({
-  selector: 'app-grant',
+  selector: 'comedores-grant',
   templateUrl: './grant.component.html',
   styleUrls: ['./grant.component.css']
 })

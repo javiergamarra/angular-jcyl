@@ -4,7 +4,7 @@ import {UserAction} from './shared/user-store';
 import {UserService} from './shared/user.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'comedores-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.Emulated

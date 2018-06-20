@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-bank-data',
+  selector: 'comedores-bank-data',
   templateUrl: './bank-data.component.html',
   styleUrls: ['./bank-data.component.css']
 })
