@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {UserService} from './user.service';
 import {Store} from '@ngrx/store';
 import {UserAction} from './shared/user-store';
+import {UserService} from './shared/user.service';
 
 @Component({
   selector: 'app-root',

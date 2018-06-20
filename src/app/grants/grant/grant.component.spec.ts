@@ -4,7 +4,7 @@ import {GrantComponent} from './grant.component';
 import {SharedModule} from '../../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
-import {PadreComponent} from '../../padre/padre.component';
+import {FatherComponent} from '../../father/father.component';
 
 describe('GrantComponent', () => {
   let component: GrantComponent;
@@ -12,7 +12,7 @@ describe('GrantComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GrantComponent, PadreComponent],
+      declarations: [GrantComponent, FatherComponent],
       providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
       imports: [RouterModule.forRoot([]), SharedModule]
     })

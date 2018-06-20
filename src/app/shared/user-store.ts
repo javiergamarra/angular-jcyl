@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {User} from '../user.service';
+import {User} from './user.service';
 
 export const RENAME = 'RENAME';
 

@@ -8,9 +8,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routing} from './core/routes';
 import {StoreModule} from '@ngrx/store';
 import {userReducer} from './shared/user-store';
+import {CentersComponent} from './centers/centers/centers.component';
+import {CenterComponent} from './centers/center/center.component';
+import {BankDataComponent} from './grants/bank-data/bank-data.component';
+import {CateringCompaniesComponent} from './caterings/catering-companies/catering-companies.component';
+import {CateringCompanyComponent} from './caterings/catering-company/catering-company.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, CentersComponent, CenterComponent, BankDataComponent, CateringCompaniesComponent,
+    CateringCompanyComponent],
   imports: [BrowserModule, SharedModule, routing, BrowserAnimationsModule, StoreModule.forRoot({ user: userReducer })],
   providers: [],
   bootstrap: [AppComponent]

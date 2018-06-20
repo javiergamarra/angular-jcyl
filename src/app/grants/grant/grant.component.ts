@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {filter, mergeMap} from 'rxjs/operators';
 import {GrantsService} from '../grants.service';
-import {PadreComponent} from '../../padre/padre.component';
+import {FatherComponent} from '../../father/father.component';
 
 const allTypes = [
   'Habitual',
@@ -29,7 +29,7 @@ export class GrantComponent implements OnInit {
   @Input() grant: any = {};
   @Output() grantDeleted = new EventEmitter();
 
-  @ViewChild('padres', { read: ViewContainerRef }) inject: ViewContainerRef;
+  @ViewChild('fathers', { read: ViewContainerRef }) inject: ViewContainerRef;
 
   constructor(
     private grantsService: GrantsService,
@@ -60,7 +60,7 @@ export class GrantComponent implements OnInit {
   ngOnInit() {
 
     this.inject.createComponent(this.componentFactoryResolver.resolveComponentFactory(
-      PadreComponent));
+      FatherComponent));
   }
 
   log(event) {

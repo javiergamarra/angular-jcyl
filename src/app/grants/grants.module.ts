@@ -4,8 +4,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthenticationGuard} from '../shared/authentication.guard';
 import {GrantsComponent} from './grants/grants.component';
 import {GrantComponent} from './grant/grant.component';
-import {PadreComponent} from '../padre/padre.component';
-import {NifDirective} from '../nif.directive';
+import {FatherComponent} from '../father/father.component';
+import {NifDirective} from '../shared/nif.directive';
 
 const routes: Routes = [
   { path: '', component: GrantsComponent },
@@ -15,8 +15,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(routes)],
-  declarations: [GrantComponent, GrantsComponent, PadreComponent, NifDirective],
-  entryComponents: [PadreComponent],
+  declarations: [GrantComponent, GrantsComponent, FatherComponent, NifDirective],
+  entryComponents: [FatherComponent],
   exports: [GrantsComponent]
 })
 export class GrantsModule {
