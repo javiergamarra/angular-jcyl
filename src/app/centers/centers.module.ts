@@ -7,6 +7,7 @@ import {CenterComponent} from './center/center.component';
 const centerRoutes: Route[] = [
   { path: '', component: CentersComponent },
   { path: 'new', component: CenterComponent },
+  { path: ':id', component: CenterComponent },
 ];
 
 @NgModule({

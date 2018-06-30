@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CenterService} from '../center.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'comedores-center',
@@ -19,18 +20,27 @@ import {Router} from '@angular/router';
       <button (click)="submit(name.value)">Enviar</button>
     </div>
   `,
-  styles: ['']
 })
 export class CenterComponent implements OnInit {
 
-  constructor(private centerService: CenterService, private router: Router) {
+  center;
+
+  constructor(private centerService: CenterService, private router: Router, private activatedRoute: ActivatedRoute) {
+
+    this.activatedRoute.params.pipe(
+      flatMap(param => this.centerService.getCenter(param.id)),
+    ).subscribe(
+      center => this.center = center,
+      err => console.log(err)
+    );
   }
 
   ngOnInit() {
   }
 
   submit(name) {
-    this.centerService.createCenter({ name })
+    this.center.name = name;
+    this.centerService.createCenter(this.center)
       .subscribe(
         _ => this.router.navigate(['centers']),
         err => console.log(err)
