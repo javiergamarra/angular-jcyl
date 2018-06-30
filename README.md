@@ -7,7 +7,6 @@ Aplicación de ejemplo para el curso sobre Angular impartido en Mayo en la JCYL.
 * delete grant
 * more filters
 * Style solicitud
-* list center
 * new center
 * list catering
 * new catering
