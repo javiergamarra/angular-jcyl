@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 const url = `https://data-grants.wedeploy.io/`;
 
-const endpoint = 'centros';
+const endpoint = 'centers';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +18,18 @@ export class CenterService {
       body: JSON.stringify(center),
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.request((center.id ? 'PUT' : 'POST'), `${url}/${endpoint}/${center.id}`, options);
+    return this.http.request((center.id ? 'PUT' : 'POST'), `${url}${endpoint}/${center.id || ''}`, options);
   }
 
   getCenters() {
-    return this.http.get(`${url}/${endpoint}/`);
+    return this.http.get(`${url}${endpoint}/`);
   }
 
   getCenter(centerId): any {
-    return this.http.get(`${url}/${endpoint}/${centerId}`);
+    return this.http.get(`${url}${endpoint}/${centerId}`);
   }
 
   delete(centerId: any) {
-    return this.http.delete(`${url}/${endpoint}/${centerId}`);
+    return this.http.delete(`${url}${endpoint}/${centerId}`);
   }
 }

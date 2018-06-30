@@ -6,7 +6,7 @@ import {CenterService} from '../center.service';
   template: `
     <table class="ui celled table">
       <tr *ngFor="let center of centers$ | async">
-        <td>{{center.nombre}}</td>
+        <td>{{center.name}}</td>
         <td>
           <a [routerLink]="[center.id]">Edit</a>
           |
