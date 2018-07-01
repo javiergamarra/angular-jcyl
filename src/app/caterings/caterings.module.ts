@@ -6,7 +6,8 @@ import {CateringCompanyComponent} from './catering-company/catering-company.comp
 
 const cateringRoutes: Route[] = [
   { path: '', component: CateringCompaniesComponent },
-  { path: 'new', component: CateringCompanyComponent }
+  { path: 'new', component: CateringCompanyComponent },
+  { path: ':id', component: CateringCompanyComponent }
 ];
 
 @NgModule({
