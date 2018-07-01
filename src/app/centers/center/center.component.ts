@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CenterService} from '../center.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {flatMap} from 'rxjs/operators';
+import {filter, flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'comedores-center',
@@ -26,9 +26,9 @@ export class CenterComponent implements OnInit {
   center;
 
   constructor(private centerService: CenterService, private router: Router, private activatedRoute: ActivatedRoute) {
-
     this.activatedRoute.params.pipe(
-      flatMap(param => this.centerService.getCenter(param.id)),
+      filter(param => param.id),
+      flatMap(param => this.centerService.getCenter(param.id))
     ).subscribe(
       center => this.center = center,
       err => console.log(err)
@@ -36,9 +36,11 @@ export class CenterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.center = {};
   }
 
   submit(name) {
+    console.log(this.center);
     this.center.name = name;
     this.centerService.createCenter(this.center)
       .subscribe(

@@ -13,7 +13,7 @@ export class CenterService {
   constructor(private http: HttpClient) {
   }
 
-  createCenter(center: any = {}): any {
+  createCenter(center): any {
     const options = {
       body: JSON.stringify(center),
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
