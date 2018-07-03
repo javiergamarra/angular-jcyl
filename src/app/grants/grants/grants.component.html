@@ -5,6 +5,11 @@
     <label for="AlumnFilter">Nombre del Alumno</label>
     <input type="text" id="AlumnFilter" #alumnFilter>
   </div>
+
+  <comedores-province (selected)="selectedProvince($event)"></comedores-province>
+  <comedores-municipality [province]="province" (selected)="selectedMunicipality($event)"></comedores-municipality>
+  <comedores-city [municipality]="municipality" (selected)="selectedCity($event)"></comedores-city>
+
 </form>
 
 <table class="ui celled table">

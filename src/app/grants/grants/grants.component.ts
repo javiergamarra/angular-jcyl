@@ -10,6 +10,8 @@ import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/o
 })
 export class GrantsComponent implements OnInit {
   grants$;
+  province;
+  municipality;
 
   @ViewChild('alumnFilter') alumnFilter: ElementRef;
 
@@ -38,5 +40,17 @@ export class GrantsComponent implements OnInit {
     this.grantsService.deleteGrant(grant.id)
       .then(x => console.log(x))
       .catch(err => console.log(err));
+  }
+
+  selectedProvince(province) {
+    this.province = province;
+  }
+
+  selectedMunicipality(municipality) {
+    this.municipality = municipality;
+  }
+
+  selectedCity(city) {
+    console.log(city);
   }
 }

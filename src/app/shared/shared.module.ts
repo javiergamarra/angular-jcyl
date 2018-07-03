@@ -11,6 +11,9 @@ import {
   MatNativeDateModule,
   MatToolbarModule
 } from '@angular/material';
+import {MunicipalityComponent} from '../municipality/municipality.component';
+import {ProvinceComponent} from '../province/province.component';
+import {CityComponent} from '../city/city.component';
 
 @NgModule({
   imports: [
@@ -20,16 +23,17 @@ import {
     HttpClientModule,
     RouterModule, MatMenuModule, MatToolbarModule,
     MatFormFieldModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule
+    MatInputModule, MatDatepickerModule, MatNativeDateModule,
   ],
-  declarations: [],
+  declarations: [ProvinceComponent, MunicipalityComponent, CityComponent],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule, MatMenuModule, MatToolbarModule, MatFormFieldModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule
+    MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    ProvinceComponent, MunicipalityComponent, CityComponent
   ]
 })
 export class SharedModule {
