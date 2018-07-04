@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 const endpoint = 'centers';
 
@@ -29,5 +29,12 @@ export class CenterService {
 
   delete(centerId: any) {
     return this.http.delete(`${this.serverUrl}${endpoint}/${centerId}`);
+  }
+
+  getCentersByQuery(query: any) {
+    const params = new HttpParams()
+      .append('type', 'search')
+      .append('filter', `[{"name": {"value": "${query}","operator": "fuzzy"}}]`);
+    return this.http.get(this.serverUrl + endpoint, { params });
   }
 }

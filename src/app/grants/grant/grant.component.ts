@@ -81,6 +81,7 @@ export class GrantComponent implements OnInit {
 
   selectSchool(school) {
     this.schoolSelected = school;
+    console.log(this.schoolSelected);
   }
 
   onChange(value) {

@@ -27,18 +27,8 @@
   </div>
 
 
-  <div class="field">
-    <label for="School">Centro</label>
-    <input type="text" id="School" (keyup)="searchSchools(school.value)" [value]="schoolSelected" #school>
-  </div>
-  <div *ngIf="listSchools.length">
-    <ul>
-      <li *ngFor="let school of listSchools" (click)="selectSchool(school)">
-        {{school}}
-      </li>
-    </ul>
-  </div>
-
+  <comedores-center-suggestion (centerSelected)="selectSchool($event)"></comedores-center-suggestion>
+  
   <h1>Padres</h1>
 
   <comedores-father>

@@ -6,6 +6,7 @@ import {GrantsComponent} from './grants/grants.component';
 import {GrantComponent} from './grant/grant.component';
 import {FatherComponent} from '../father/father.component';
 import {NifDirective} from '../shared/nif.directive';
+import {CenterSuggestionComponent} from '../center-suggestion/center-suggestion.component';
 
 const routes: Routes = [
   { path: '', component: GrantsComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(routes)],
-  declarations: [GrantComponent, GrantsComponent, FatherComponent, NifDirective],
+  declarations: [GrantComponent, GrantsComponent, FatherComponent, NifDirective, CenterSuggestionComponent],
   entryComponents: [FatherComponent],
   exports: [GrantsComponent]
 })
