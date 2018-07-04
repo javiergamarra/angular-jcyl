@@ -1,20 +1,28 @@
 import {Action} from '@ngrx/store';
 import {User} from './user.service';
 
-export const RENAME = 'RENAME';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 
-export class UserAction implements Action {
+export class LoginAction implements Action {
 
-  type: string = RENAME;
+  type: string = LOGIN;
 
   constructor(public payload) {
   }
 }
 
-export function userReducer(state: User, action: UserAction) {
+export class LogoutAction implements Action {
+
+  type: string = LOGOUT;
+}
+
+export function userReducer(state: User, action: LoginAction) {
   switch (action.type) {
-    case RENAME:
-      return state + action.payload;
+    case LOGIN:
+      return action.payload;
+    case LOGOUT:
+      return '';
 
     default:
       return state;

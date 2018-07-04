@@ -26,6 +26,8 @@
           <button mat-menu-item [routerLink]="['caterings', 'new']">New Catering</button>
         </mat-menu>
 
+        <span [routerLink]="['user']">{{loggedUser || 'login'}}</span>
+
       </mat-toolbar-row>
     </mat-toolbar>
 
