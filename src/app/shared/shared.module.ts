@@ -14,6 +14,7 @@ import {
 import {MunicipalityComponent} from '../municipality/municipality.component';
 import {ProvinceComponent} from '../province/province.component';
 import {CityComponent} from '../city/city.component';
+import {CarouselModule} from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {CityComponent} from '../city/city.component';
     RouterModule, MatMenuModule, MatToolbarModule,
     MatFormFieldModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    CarouselModule.forRoot()
   ],
   declarations: [ProvinceComponent, MunicipalityComponent, CityComponent],
   exports: [
@@ -33,7 +35,7 @@ import {CityComponent} from '../city/city.component';
     HttpClientModule,
     RouterModule, MatMenuModule, MatToolbarModule, MatFormFieldModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    ProvinceComponent, MunicipalityComponent, CityComponent
+    ProvinceComponent, MunicipalityComponent, CityComponent, CarouselModule
   ]
 })
 export class SharedModule {

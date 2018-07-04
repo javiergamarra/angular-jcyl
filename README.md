@@ -5,15 +5,14 @@ Aplicación de ejemplo para el curso sobre Angular impartido en Mayo en la JCYL.
 ## TODO
 
 ### 1 day
-* user logged (1)
-* select center, provinces in grant (1)
-
-### 2 day
-* more filters (2)
-* style grant (1)
-* CentroFiltradoComponent (1)
-* Check Carousel error (1)
+* user logged
 * url
 
+### 2 day
+* CentroFiltradoComponent
+* filters
+* check & style grant
+* select center, provinces in grant
+
 ### 3 day
-* Mostrar página completa (4) 
+* Mostrar página completa
