@@ -20,9 +20,7 @@ export class GrantsService {
   }
 
   deleteGrant(id): any {
-    this.http
-      .delete(url + id)
-      .toPromise();
+    return this.http.delete(url + id);
   }
 
   getGrants() {

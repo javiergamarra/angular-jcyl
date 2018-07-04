@@ -30,6 +30,8 @@
     <td>{{grant.created | date: 'dd/MM'}}</td>
     <td [class.warning]="grant.warning">
       <a [routerLink]="[grant.id]">Edit</a>
+      <span>&nbsp;</span>
+      <a (click)="delete(grant)">Delete</a>
     </td>
   </tr>
   </tbody>
