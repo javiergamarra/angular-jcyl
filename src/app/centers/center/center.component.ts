@@ -40,7 +40,6 @@ export class CenterComponent implements OnInit {
   }
 
   submit(name) {
-    console.log(this.center);
     this.center.name = name;
     this.centerService.createCenter(this.center)
       .subscribe(

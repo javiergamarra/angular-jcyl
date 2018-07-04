@@ -3,8 +3,11 @@
 </div>
 
 <div *ngIf="!loggedUser">
-  <label for="user">User</label>
-  <input id="user" #user>
 
-  <button (click)="login(user.value)">Login</button>
+  <mat-form-field>
+    <label for="user">User</label>
+    <input matInput id="user" #user>
+  </mat-form-field>
+
+  <button mat-button (click)="login(user.value)">Login</button>
 </div>
