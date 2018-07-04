@@ -4,11 +4,8 @@ Aplicación de ejemplo para el curso sobre Angular impartido en Mayo en la JCYL.
 
 ## TODO
 
-### 1 day
-* user logged
-* url
-
 ### 2 day
+* user logged
 * CentroFiltradoComponent
 * filters
 * check & style grant

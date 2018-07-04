@@ -14,7 +14,9 @@ import {UserComponent} from './user/user.component';
 @NgModule({
   declarations: [AppComponent, HomeComponent, BankDataComponent, UserComponent],
   imports: [BrowserModule, SharedModule, routing, BrowserAnimationsModule, StoreModule.forRoot({ user: userReducer })],
-  providers: [],
+  providers: [{
+    provide: 'serverUrl', useValue: 'https://data-grants.wedeploy.io/'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
