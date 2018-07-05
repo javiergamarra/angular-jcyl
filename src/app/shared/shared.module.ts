@@ -9,6 +9,7 @@ import {
   MatInputModule,
   MatMenuModule,
   MatNativeDateModule,
+  MatRadioModule,
   MatToolbarModule
 } from '@angular/material';
 import {MunicipalityComponent} from '../municipality/municipality.component';
@@ -24,7 +25,7 @@ import {CarouselModule} from 'ngx-bootstrap';
     HttpClientModule,
     RouterModule, MatMenuModule, MatToolbarModule,
     MatFormFieldModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    MatInputModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule,
     CarouselModule.forRoot()
   ],
   declarations: [ProvinceComponent, MunicipalityComponent, CityComponent],
@@ -34,7 +35,7 @@ import {CarouselModule} from 'ngx-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule, MatMenuModule, MatToolbarModule, MatFormFieldModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    MatInputModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatRadioModule,
     ProvinceComponent, MunicipalityComponent, CityComponent, CarouselModule
   ]
 })

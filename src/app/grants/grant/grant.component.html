@@ -1,18 +1,23 @@
-<h1>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h1>
+<h2>{{grant?.id ? 'Actualizar' : 'Nueva'}} Solicitud</h2>
 
 <form class="ui form" [formGroup]="form">
 
-  <label for="AlumnoRadio">Alumno</label>
-  <input type="radio" name="kind" value="Alumno" id="AlumnoRadio" (change)="onChange($event.target.value)">
-  <label for="ProfesorRadio">Profesor</label>
-  <input type="radio" name="kind" value="Profesor" id="ProfesorRadio" (change)="onChange($event.target.value)">
+  <h3>Datos del alumno/profesor</h3>
+
+  <p>
+    Tipo de la solicitud
+    <mat-radio-group>
+      <mat-radio-button value="Alumno" (change)="onChange($event.target.value)">Alumno</mat-radio-button>
+      <mat-radio-button value="Profesor" (change)="onChange($event.target.value)">Profesor</mat-radio-button>
+    </mat-radio-group>
+  </p>
 
   <select name="type" [(ngModel)]="grant.type" [ngModelOptions]="{standalone: true}">
     <option *ngFor="let type of types">{{type}}</option>
   </select>
 
   <div class="field" class="menu-ancho">
-    <label for="AlumnName">Nombre del Alumno</label>
+    <label for="AlumnName">Nombre</label>
     <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName" id="AlumnName"
            [formControl]="alumnControl">
   </div>
@@ -20,16 +25,12 @@
   <p *ngIf="alumnControl.errors && !form.pristine">
     {{alumnControl.errors | json}}
   </p>
-  <div class="field">
-    <label for="GrantName">Solicitud</label>
-    <input type="text" value="{{grant?.name}}" #name required name="GrantName" id="GrantName"
-           [formControl]="form.controls['grantName']">
-  </div>
 
+  <h3>Datos del centro</h3>
 
   <comedores-center-suggestion (centerSelected)="selectSchool($event)"></comedores-center-suggestion>
-  
-  <h1>Padres</h1>
+
+  <h3>Datos del padre/madre/tutor</h3>
 
   <comedores-father>
     <div titulo>Datos del primer padre</div>
@@ -37,11 +38,15 @@
 
   <div #fathers></div>
 
+  <h3>Datos de la solicitud</h3>
+
   <mat-form-field>
     <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="log($event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+
+  <hr/>
 
   <button (click)="submit()" [disabled]="!form.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
   <button (click)="delete()">Eliminar</button>
