@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {UserService} from '../shared/user.service';
 
 @Component({
   selector: 'comedores-father',
@@ -9,8 +8,7 @@ import {UserService} from '../shared/user.service';
 })
 export class FatherComponent implements OnInit {
 
-  constructor(private userService: UserService) {
-    this.userService.currentUser.asObservable().subscribe(x => console.log(x));
+  constructor() {
   }
 
   ngOnInit() {

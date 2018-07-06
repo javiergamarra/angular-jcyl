@@ -1,6 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {UserService} from './shared/user.service';
 
 @Component({
   selector: 'comedores-root',
@@ -12,7 +11,7 @@ export class AppComponent {
 
   loggedUser;
 
-  constructor(private userService: UserService, private store: Store<any>) {
+  constructor(private store: Store<any>) {
     store.select('user').subscribe(user => this.loggedUser = user);
   }
 
