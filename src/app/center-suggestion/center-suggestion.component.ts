@@ -2,6 +2,7 @@ import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@a
 import {debounceTime, distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators';
 import {fromEvent} from 'rxjs';
 import {CenterService} from '../centers/center.service';
+import {CateringService} from '../caterings/catering.service';
 
 @Component({
   selector: 'comedores-center-suggestion',
@@ -21,7 +22,7 @@ export class CenterSuggestionComponent implements OnInit {
   @ViewChild('centerSuggestion') centerSuggestion: ElementRef;
   @Output() private centerSelected = new EventEmitter();
 
-  constructor(private centerService: CenterService) {
+  constructor(private centerService: CenterService, private cateringService: CateringService) {
   }
 
   ngOnInit() {
@@ -37,6 +38,10 @@ export class CenterSuggestionComponent implements OnInit {
   }
 
   selectCenter(center: any) {
+    if (center.cateringId) {
+      this.cateringService.getCatering(center.cateringId)
+        .subscribe(catering => center.catering = catering, err => console.log(err));
+    }
     this.centerSelected.emit(center);
   }
 }

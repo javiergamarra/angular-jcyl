@@ -28,7 +28,24 @@
 
   <h3>Datos del centro</h3>
 
+  <p>Centro seleccionado: {{schoolSelected.name}}</p>
+
   <comedores-center-suggestion (centerSelected)="selectSchool($event)"></comedores-center-suggestion>
+
+  <div class="ui grid">
+    <div class="six wide column">
+      Id del centro: {{schoolSelected?.id}}
+    </div>
+    <div class="six wide column">
+      Catering: {{schoolSelected?.catering?.name}}
+    </div>
+    <div class="six wide column">
+      Precio habitual: {{schoolSelected?.catering?.regular_price}}
+    </div>
+    <div class="six wide column">
+      Precio esporádico: {{schoolSelected?.catering?.sporadic_price}}
+    </div>
+  </div>
 
   <h3>Datos del padre/madre/tutor</h3>
 

@@ -15,9 +15,14 @@ import {filter, flatMap} from 'rxjs/operators';
         <input type="text" value="{{center?.name}}" #name required name="CenterName">
       </div>
 
+      <div class="field" class="menu-ancho">
+        <label for="CateringId">Id del catering</label>
+        <input type="text" value="{{center?.catering?.id}}" #cateringId name="CateringId">
+      </div>
+
       <br/>
 
-      <button (click)="submit(name.value)">Enviar</button>
+      <button (click)="submit(name.value, cateringId.value)">Enviar</button>
     </div>
   `,
 })
@@ -39,8 +44,9 @@ export class CenterComponent implements OnInit {
     this.center = {};
   }
 
-  submit(name) {
+  submit(name, cateringId) {
     this.center.name = name;
+    this.center.cateringId = cateringId;
     this.centerService.createCenter(this.center)
       .subscribe(
         _ => this.router.navigate(['centers']),
