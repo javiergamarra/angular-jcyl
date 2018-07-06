@@ -4,21 +4,40 @@
 
   <h3>Datos del alumno/profesor</h3>
 
-  <p>
+  <p class="title">
     Tipo de la solicitud
+  </p>
+  <p>
     <mat-radio-group>
-      <mat-radio-button value="Alumno" (change)="onChange($event.target.value)">Alumno</mat-radio-button>
-      <mat-radio-button value="Profesor" (change)="onChange($event.target.value)">Profesor</mat-radio-button>
+      <mat-radio-button value="Alumno" (change)="onChange($event.value)">Alumno</mat-radio-button>
+      <mat-radio-button value="Profesor" (change)="onChange($event.value)" style="padding-left: 20px">Profesor</mat-radio-button>
     </mat-radio-group>
   </p>
 
-  <select name="type" [(ngModel)]="grant.type" [ngModelOptions]="{standalone: true}">
-    <option *ngFor="let type of types">{{type}}</option>
-  </select>
+  <p class="title">
+    Tipo del servicio
+  </p>
+  <p>
+    <select name="type" [(ngModel)]="grant.type" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let type of types">{{type}}</option>
+    </select>
+  </p>
 
   <div class="field" class="menu-ancho">
     <label for="AlumnName">Nombre</label>
-    <input type="text" value="{{grant?.alumn}}" #alumn required name="AlumnName" id="AlumnName"
+    <input type="text" value="{{grant?.alumn?.name}}" #alumn required name="AlumnName" id="AlumnName"
+           [formControl]="alumnControl">
+  </div>
+
+  <div class="field" class="menu-ancho">
+    <label for="AlumnSurname1">Primer apellido</label>
+    <input type="text" value="{{grant?.alumn?.surname1}}" #alumn required name="AlumnSurname1" id="AlumnSurname1"
+           [formControl]="alumnControl">
+  </div>
+
+  <div class="field" class="menu-ancho">
+    <label for="AlumnSurname2">Segundo apellido</label>
+    <input type="text" value="{{grant?.alumn?.surname2}}" name="AlumnSurname2" id="AlumnSurname2"
            [formControl]="alumnControl">
   </div>
 
@@ -63,8 +82,8 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <hr/>
+  <br/>
 
   <button (click)="submit()" [disabled]="!form.valid">{{grant?.id ? 'Actualizar' : 'Guardar'}}</button>
-  <button (click)="delete()">Eliminar</button>
+  <button (click)="delete()" *ngIf="grant.id">Eliminar</button>
 </form>

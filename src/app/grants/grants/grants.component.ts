@@ -53,6 +53,5 @@ export class GrantsComponent implements OnInit {
   }
 
   selectedCity(city) {
-    console.log(city);
   }
 }

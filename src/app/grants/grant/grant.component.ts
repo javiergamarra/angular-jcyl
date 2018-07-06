@@ -71,8 +71,11 @@ export class GrantComponent implements OnInit {
   }
 
   delete() {
-    this.grantDeleted.emit(this.grant);
-    return false;
+    this.grantsService.deleteGrant(this.grant.id)
+      .subscribe(
+        _ => this.grantDeleted.emit(this.grant),
+        err => console.log(err)
+      );
   }
 
   searchSchools(school) {
@@ -81,11 +84,9 @@ export class GrantComponent implements OnInit {
 
   selectSchool(school) {
     this.schoolSelected = school;
-    console.log(this.schoolSelected);
   }
 
   onChange(value) {
-    console.log(value);
     if (value === 'Profesor') {
       this.types = ['Habitual'];
       this.grant.type = 'Habitual';
