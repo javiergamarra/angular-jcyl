@@ -42,7 +42,7 @@ export class CityComponent implements OnInit {
 
   changed() {
     if (this.city) {
-      this.selected.emit(this.city.name);
+      this.selected.emit(this.city);
     }
   }
 

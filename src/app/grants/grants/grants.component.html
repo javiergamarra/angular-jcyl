@@ -1,4 +1,4 @@
-<h1>Filtro</h1>
+<h3>Filtro</h3>
 
 <form class="ui form">
   <div class="field four wide">
@@ -6,17 +6,14 @@
     <input type="text" id="AlumnFilter" #alumnFilter>
   </div>
 
-  <comedores-province (selected)="selectedProvince($event)"></comedores-province>
-  <comedores-municipality [province]="province" (selected)="selectedMunicipality($event)"></comedores-municipality>
-  <comedores-city [municipality]="municipality" (selected)="selectedCity($event)"></comedores-city>
-
 </form>
 
 <table class="ui celled table">
   <thead>
   <tr>
-    <th>Solicitud</th>
     <th>Alumno</th>
+    <th>Padre</th>
+    <th>Centro</th>
     <th>Fecha</th>
     <th>Estado</th>
   </tr>
@@ -24,10 +21,11 @@
   <tbody>
   <tr *ngFor="let grant of grants$ | async;let i = index;let odd = odd; let first = first">
     <td>
-      <div class="ui ribbon label">{{grant.name}}</div>
+      {{grant.alumn.alumnName}}
     </td>
-    <td>{{grant.alumn}}</td>
-    <td>{{grant.created | date: 'dd/MM'}}</td>
+    <td>{{grant.father[0].name}}</td>
+    <td>{{grant.center.name}}</td>
+    <td>{{grant.date | date: 'dd/MM'}}</td>
     <td [class.warning]="grant.warning">
       <a [routerLink]="[grant.id]">Edit</a>
       <span> | </span>

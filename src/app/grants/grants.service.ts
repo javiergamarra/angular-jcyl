@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
-const endpoint = 'grants/';
+const endpoint = 'grant/';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class GrantsService {
       body: JSON.stringify(grant),
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.request((grant.id ? 'PUT' : 'POST'), this.serverUrl + endpoint + grant.id, options)
+    return this.http.request((grant.id ? 'PUT' : 'POST'), this.serverUrl + endpoint + (grant.id || ''), options)
       .toPromise();
   }
 

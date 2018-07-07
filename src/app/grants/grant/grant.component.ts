@@ -1,6 +1,6 @@
 import {Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {filter, mergeMap} from 'rxjs/operators';
 import {GrantsService} from '../grants.service';
 import {FatherComponent} from '../../father/father.component';
@@ -18,14 +18,13 @@ const allTypes = [
   styleUrls: ['./grant.component.css']
 })
 export class GrantComponent implements OnInit {
-  centerSelected = '';
   form: FormGroup;
   types = allTypes;
   province;
   municipality;
-  city;
+  numParents = 0;
 
-  alumnControl: FormControl;
+  alumnName: FormControl;
 
   @Input() grant: any = {};
   @Output() grantDeleted = new EventEmitter();
@@ -36,32 +35,47 @@ export class GrantComponent implements OnInit {
     private grantsService: GrantsService,
     private formsBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private componentFactoryResolver: ComponentFactoryResolver
   ) {
-    this.alumnControl = formsBuilder.control('', [
+    this.alumnName = formsBuilder.control('', [
       Validators.required,
       Validators.minLength(3),
       this.myValidator
     ]);
 
     this.form = formsBuilder.group({
-      alumnControl: this.alumnControl,
-      date: ''
+      'alumnName': this.alumnName,
+      'alumnSurname1': '',
+      'alumnSurname2': '',
     });
     this.route.params
       .pipe(filter(x => x.id), mergeMap(x => this.grantsService.getGrant(x.id)))
-      .subscribe(y => (this.grant = y));
+      .subscribe(grant => {
+        this.grant = grant;
+        this.alumnName.setValue(this.grant.alumn.alumnName);
+        this.form.controls.alumnSurname1.setValue(this.grant.alumn.alumnSurname1);
+        this.form.controls.alumnSurname2.setValue(this.grant.alumn.alumnSurname2);
+      });
   }
 
   ngOnInit() {
-    this.inject.createComponent(this.componentFactoryResolver.resolveComponentFactory(FatherComponent));
+    this.grant.alumn = {};
+  }
+
+  addNewFather() {
+    this.numParents++;
+    const fatherComponentComponentRef = this.inject.createComponent(this.componentFactoryResolver.resolveComponentFactory(FatherComponent));
+    fatherComponentComponentRef.instance.fatherFilled.subscribe(value => {
+        this.fatherFilled(value, this.numParents);
+      }
+    );
   }
 
   submit() {
-    this.grant = this.grant || this.form.value;
-    this.grant.alumn = this.form.value.alumnName;
+    this.grant.alumn = this.form.value;
     this.grantsService.createGrant(this.grant)
-      .then(x => console.log(x))
+      .then(x => this.router.navigate(['grants', x.id]))
       .catch(err => console.log(err));
   }
 
@@ -74,7 +88,7 @@ export class GrantComponent implements OnInit {
   }
 
   selectSchool(school) {
-    this.centerSelected = school;
+    this.grant.center = school;
   }
 
   onChange(value) {
@@ -87,7 +101,7 @@ export class GrantComponent implements OnInit {
   }
 
   myValidator(formControl: FormControl) {
-    return formControl.value.includes('asdf') ? { InvalidValue: true } : {};
+    return formControl.value.includes('null') ? { InvalidValue: true } : {};
   }
 
   selectedProvince(province) {
@@ -100,5 +114,16 @@ export class GrantComponent implements OnInit {
 
   selectedCity(city) {
     this.grant.city = city;
+  }
+
+  fatherFilled(father, i) {
+    if (!this.grant.father) {
+      this.grant.father = [];
+    }
+    this.grant.father[i] = father;
+  }
+
+  storeDate($event) {
+    this.grant.date = $event.value;
   }
 }

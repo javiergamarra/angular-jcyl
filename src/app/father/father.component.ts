@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'comedores-father',
@@ -8,10 +8,19 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class FatherComponent implements OnInit {
 
+  @Output()
+  fatherFilled = new EventEmitter();
+  father = {};
+
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  change(key, value) {
+    this.father[key] = value;
+    this.fatherFilled.emit(this.father);
   }
 
 }

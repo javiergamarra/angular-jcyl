@@ -1,14 +1,25 @@
 <h4>
   <ng-content select="[titulo]"></ng-content>
 </h4>
-<label>DNI</label>
-<input comedoresNIF>
-<label>Nombre</label>
-<input>
-<label>Primer Apellido</label>
-<input>
-<label>Segundo Apellido</label>
-<input>
+
+<div class="ui grid">
+  <div class="four wide column">
+    <label>DNI</label>
+    <input comedoresNIF (keyup)="change('dni', dni.value)" #dni>
+  </div>
+  <div class="four wide column">
+    <label>Nombre</label>
+    <input (keyup)="change('name', name.value)" #name>
+  </div>
+  <div class="four wide column">
+    <label>Primer Apellido</label>
+    <input (keyup)="change('surname1', surname1.value)" #surname1>
+  </div>
+  <div class="four wide column">
+    <label>Segundo Apellido</label>
+    <input (keyup)="change('surname2', surname2.value)" #surname2>
+  </div>
+</div>
 
 <ng-content select="[pie]"></ng-content>
 

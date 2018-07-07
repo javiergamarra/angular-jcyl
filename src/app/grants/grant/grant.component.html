@@ -24,21 +24,22 @@
   </p>
 
   <div class="field" class="menu-ancho">
-    <label for="AlumnName">Nombre</label>
-    <input type="text" value="{{grant?.alumn?.name}}" #alumn required name="AlumnName" id="AlumnName"
-           [formControl]="alumnControl">
+    <label>Nombre</label>
+    <input [formControl]="alumnName">
+  </div>
+
+  <p *ngIf="alumnName.errors && !form.pristine">
+    {{alumnName.errors | json}}
+  </p>
+
+  <div class="field" class="menu-ancho">
+    <label>Primer apellido</label>
+    <input [formControl]="form.controls.alumnSurname1">
   </div>
 
   <div class="field" class="menu-ancho">
-    <label for="AlumnSurname1">Primer apellido</label>
-    <input type="text" value="{{grant?.alumn?.surname1}}" #alumn required name="AlumnSurname1" id="AlumnSurname1"
-           [formControl]="alumnControl">
-  </div>
-
-  <div class="field" class="menu-ancho">
-    <label for="AlumnSurname2">Segundo apellido</label>
-    <input type="text" value="{{grant?.alumn?.surname2}}" name="AlumnSurname2" id="AlumnSurname2"
-           [formControl]="alumnControl">
+    <label>Segundo apellido</label>
+    <input [formControl]="form.controls.alumnSurname2">
   </div>
 
   <p class="title">
@@ -49,43 +50,41 @@
   <comedores-municipality [province]="province" (selected)="selectedMunicipality($event)"></comedores-municipality>
   <comedores-city [municipality]="municipality" (selected)="selectedCity($event)"></comedores-city>
 
-  <p *ngIf="alumnControl.errors && !form.pristine">
-    {{alumnControl.errors | json}}
-  </p>
-
   <h3>Datos del centro</h3>
 
-  <p>Centro seleccionado: {{centerSelected.name}}</p>
+  <p>Centro seleccionado: {{grant?.center?.name}}</p>
 
   <comedores-center-suggestion (centerSelected)="selectSchool($event)"></comedores-center-suggestion>
 
   <div class="ui grid">
     <div class="six wide column">
-      Id del centro: {{centerSelected?.id}}
+      Id del centro: {{grant?.center?.id}}
     </div>
     <div class="six wide column">
-      Catering: {{centerSelected?.catering?.name}}
+      Catering: {{grant?.center?.catering?.name}}
     </div>
     <div class="six wide column">
-      Precio habitual: {{centerSelected?.catering?.regular_price}}
+      Precio habitual: {{grant?.center?.catering?.regular_price}}
     </div>
     <div class="six wide column">
-      Precio esporádico: {{centerSelected?.catering?.sporadic_price}}
+      Precio esporádico: {{grant?.center?.catering?.sporadic_price}}
     </div>
   </div>
 
   <h3>Datos del padre/madre/tutor</h3>
 
-  <comedores-father>
+  <comedores-father (fatherFilled)="fatherFilled($event, 0)">
     <div titulo>Datos del primer padre</div>
   </comedores-father>
 
   <div #fathers></div>
 
+  <button (click)="addNewFather()">Add new father</button>
+
   <h3>Datos de la solicitud</h3>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="log($event)">
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="storeDate($event)">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
