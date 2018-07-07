@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CentersComponent} from './centers.component';
+import {SharedModule} from '../../shared/shared.module';
 
 describe('CentersComponent', () => {
   let component: CentersComponent;
@@ -8,7 +9,11 @@ describe('CentersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CentersComponent]
+      declarations: [CentersComponent],
+      imports: [SharedModule],
+      providers: [{
+        provide: 'serverUrl', useValue: 'http://localhost:4000'
+      }],
     })
       .compileComponents();
   }));

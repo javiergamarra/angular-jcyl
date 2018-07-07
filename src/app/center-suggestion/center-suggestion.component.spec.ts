@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CenterSuggestionComponent } from './center-suggestion.component';
+import {CenterSuggestionComponent} from './center-suggestion.component';
+import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
 
 describe('CenterSuggestionComponent', () => {
   let component: CenterSuggestionComponent;
@@ -8,9 +11,11 @@ describe('CenterSuggestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CenterSuggestionComponent ]
+      declarations: [CenterSuggestionComponent],
+      imports: [SharedModule, RouterModule.forRoot([])],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }, { provide: 'serverUrl', useValue: 'http://localhost:4000' }],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

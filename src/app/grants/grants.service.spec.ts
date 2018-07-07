@@ -17,7 +17,7 @@ describe('GrantsService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    grantsService = new GrantsService(<any> httpClientSpy);
+    grantsService = new GrantsService(<any> httpClientSpy, '');
   });
 
   it('should return expected grants (HttpClient called once)', () => {
@@ -25,7 +25,7 @@ describe('GrantsService', () => {
     httpClientSpy.get.and.returnValue(asyncData(['hola']));
 
     grantsService.getGrants().subscribe(
-      grants => expect(grants).toEqual(['hola'], 'expected grants'),
+      (grants: any) => expect(grants).toEqual(['hola'], 'expected grants'),
       fail
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');

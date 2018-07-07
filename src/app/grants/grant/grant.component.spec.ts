@@ -5,6 +5,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
 import {FatherComponent} from '../../father/father.component';
+import {CenterSuggestionComponent} from '../../center-suggestion/center-suggestion.component';
 
 describe('GrantComponent', () => {
   let component: GrantComponent;
@@ -12,9 +13,9 @@ describe('GrantComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GrantComponent, FatherComponent],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
-      imports: [RouterModule.forRoot([]), SharedModule]
+      declarations: [GrantComponent, FatherComponent, CenterSuggestionComponent],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }, { provide: 'serverUrl', useValue: 'http://localhost:4000' }],
+      imports: [RouterModule.forRoot([]), SharedModule],
     })
       .compileComponents();
   }));

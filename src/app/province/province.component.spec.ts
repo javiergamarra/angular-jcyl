@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProvinceComponent } from './province.component';
+import {ProvinceComponent} from './province.component';
+import {SharedModule} from '../shared/shared.module';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 describe('ProvinceComponent', () => {
   let component: ProvinceComponent;
@@ -8,9 +11,10 @@ describe('ProvinceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProvinceComponent ]
+      declarations: [ProvinceComponent],
+      imports: [CommonModule, FormsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
