@@ -28,16 +28,10 @@ describe('GrantComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('#schoolSelected', () => {
-    expect(component.schoolSelected).toBe('', 'null');
+  it('#centerSelected', () => {
+    expect(component.centerSelected).toBe('', 'null');
     component.selectSchool('Fernando');
-    expect(component.schoolSelected).toContain('Fernando', 'on after click');
-  });
-
-  it('#searchSchools', () => {
-    expect(component.listSchools).toEqual([], 'null');
-    component.searchSchools('Fernando');
-    expect(component.listSchools).toContain('Fernando de Rojas', 'on after click');
+    expect(component.centerSelected).toContain('Fernando', 'on after click');
   });
 
 });

@@ -4,6 +4,6 @@ Aplicación de ejemplo para el curso sobre Angular impartido en Mayo en la JCYL.
 
 ## TODO
 
-* Provinces in grant
-* Finish page -> father component & check
+* Father in grant
+* Check grant
 * Grant filters

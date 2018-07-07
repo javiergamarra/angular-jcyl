@@ -41,28 +41,36 @@
            [formControl]="alumnControl">
   </div>
 
+  <p class="title">
+    Dirección
+  </p>
+
+  <comedores-province (selected)="selectedProvince($event)"></comedores-province>
+  <comedores-municipality [province]="province" (selected)="selectedMunicipality($event)"></comedores-municipality>
+  <comedores-city [municipality]="municipality" (selected)="selectedCity($event)"></comedores-city>
+
   <p *ngIf="alumnControl.errors && !form.pristine">
     {{alumnControl.errors | json}}
   </p>
 
   <h3>Datos del centro</h3>
 
-  <p>Centro seleccionado: {{schoolSelected.name}}</p>
+  <p>Centro seleccionado: {{centerSelected.name}}</p>
 
   <comedores-center-suggestion (centerSelected)="selectSchool($event)"></comedores-center-suggestion>
 
   <div class="ui grid">
     <div class="six wide column">
-      Id del centro: {{schoolSelected?.id}}
+      Id del centro: {{centerSelected?.id}}
     </div>
     <div class="six wide column">
-      Catering: {{schoolSelected?.catering?.name}}
+      Catering: {{centerSelected?.catering?.name}}
     </div>
     <div class="six wide column">
-      Precio habitual: {{schoolSelected?.catering?.regular_price}}
+      Precio habitual: {{centerSelected?.catering?.regular_price}}
     </div>
     <div class="six wide column">
-      Precio esporádico: {{schoolSelected?.catering?.sporadic_price}}
+      Precio esporádico: {{centerSelected?.catering?.sporadic_price}}
     </div>
   </div>
 

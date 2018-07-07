@@ -18,11 +18,12 @@ const allTypes = [
   styleUrls: ['./grant.component.css']
 })
 export class GrantComponent implements OnInit {
-  schools = ['Fernando de Rojas', 'Nuestra Señora de la Consolación'];
-  listSchools = [];
-  schoolSelected = '';
+  centerSelected = '';
   form: FormGroup;
   types = allTypes;
+  province;
+  municipality;
+  city;
 
   alumnControl: FormControl;
 
@@ -45,16 +46,11 @@ export class GrantComponent implements OnInit {
 
     this.form = formsBuilder.group({
       alumnControl: this.alumnControl,
-      grantName: '',
       date: ''
     });
     this.route.params
-      .pipe(
-        filter(x => x.id),
-        mergeMap(x => this.grantsService.getGrant(x.id))
-      )
+      .pipe(filter(x => x.id), mergeMap(x => this.grantsService.getGrant(x.id)))
       .subscribe(y => (this.grant = y));
-
   }
 
   ngOnInit() {
@@ -63,7 +59,6 @@ export class GrantComponent implements OnInit {
 
   submit() {
     this.grant = this.grant || this.form.value;
-    this.grant.name = this.form.value.grantName;
     this.grant.alumn = this.form.value.alumnName;
     this.grantsService.createGrant(this.grant)
       .then(x => console.log(x))
@@ -78,12 +73,8 @@ export class GrantComponent implements OnInit {
       );
   }
 
-  searchSchools(school) {
-    this.listSchools = this.schools.filter(x => x.includes(school));
-  }
-
   selectSchool(school) {
-    this.schoolSelected = school;
+    this.centerSelected = school;
   }
 
   onChange(value) {
@@ -97,5 +88,17 @@ export class GrantComponent implements OnInit {
 
   myValidator(formControl: FormControl) {
     return formControl.value.includes('asdf') ? { InvalidValue: true } : {};
+  }
+
+  selectedProvince(province) {
+    this.province = province;
+  }
+
+  selectedMunicipality(municipality) {
+    this.municipality = municipality;
+  }
+
+  selectedCity(city) {
+    this.grant.city = city;
   }
 }
