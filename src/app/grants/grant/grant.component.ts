@@ -75,7 +75,7 @@ export class GrantComponent implements OnInit {
   submit() {
     this.grant.alumn = this.form.value;
     this.grantsService.createGrant(this.grant)
-      .then(x => this.router.navigate(['grants', x.id]))
+      .then(x => this.router.navigate(['grants']))
       .catch(err => console.log(err));
   }
 

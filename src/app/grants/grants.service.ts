@@ -34,7 +34,7 @@ export class GrantsService {
   getGrantsByQuery(query: string): any {
     const params = new HttpParams()
       .append('type', 'search')
-      .append('filter', `[{"name": {"value": "${query}","operator": "match"}}]`);
+      .append('filter', `[{"alumn.alumnName": {"value": "${query}","operator": "fuzzy"}}]`);
     return this.http.get(this.serverUrl + endpoint, { params });
   }
 
