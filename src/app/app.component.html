@@ -10,24 +10,24 @@
         <span style="padding:10px"></span>
         <button mat-button [matMenuTriggerFor]="menu" class="menu-ancho">Grants</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item [routerLink]="['grants']">List</button>
           <button mat-menu-item [routerLink]="['grants', 'new-grant']">New Grant</button>
+          <button mat-menu-item [routerLink]="['grants']">List</button>
         </mat-menu>
 
         <button mat-button [matMenuTriggerFor]="centerMenu" class="menu-ancho">Centers</button>
         <mat-menu #centerMenu="matMenu">
-          <button mat-menu-item [routerLink]="['centers']">List</button>
           <button mat-menu-item [routerLink]="['centers', 'new']">New Center</button>
+          <button mat-menu-item [routerLink]="['centers']">List</button>
         </mat-menu>
 
         <button mat-button [matMenuTriggerFor]="cateringMenu" class="menu-ancho">Caterings</button>
         <mat-menu #cateringMenu="matMenu">
-          <button mat-menu-item [routerLink]="['caterings']">List</button>
           <button mat-menu-item [routerLink]="['caterings', 'new']">New Catering</button>
+          <button mat-menu-item [routerLink]="['caterings']">List</button>
         </mat-menu>
 
         <span>&nbsp;</span>
-        <span [routerLink]="['user']">{{loggedUser || 'login'}}</span>
+        <span [routerLink]="['user']">{{loggedUser ? loggedUser.name : 'login'}}</span>
 
 
       </mat-toolbar-row>
